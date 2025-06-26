@@ -19,6 +19,8 @@ google_apis_credentials.json
 /var/uploads/*
 !/var/uploads/.gitkeep
 /var/testing-database.db
+/var/tailwind/*
+!/var/tailwind/.gitkeep
 .env
 .env.test
 .idea
