@@ -1,3 +1,6 @@
+imports:
+    - { resource: 'admins.yaml' }
+
 parameters:
     default_locale: 'ca'
     short_project_title: 'ADC'
