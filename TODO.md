@@ -9,3 +9,5 @@ TODO
  * secure Sonata Admin login
  * manage Symfony Messenger queues
  * add rotating logs
+ * add ReCaptcha
+ * add Google Analytics
