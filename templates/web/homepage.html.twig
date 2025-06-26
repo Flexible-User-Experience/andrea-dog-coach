@@ -1,12 +1,12 @@
 {% extends 'web/base.html.twig' %}
 
-{% block title %}Happy Paws Coaching · {{ parent() }}{% endblock %}
+{% block title %}{{ 'Happy Paws Coaching' | trans }} · {{ parent() }}{% endblock %}
 
 {% block body %}
     <section class="text-center py-20 bg-yellow-100">
-        <h1 class="text-4xl font-bold text-gray-800">Happy Paws Dog Coaching</h1>
-        <p class="mt-4 text-xl text-gray-600">Positive training for happy, well-behaved dogs</p>
-        <a href="#contact" class="mt-6 inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full transition">Book a Session</a>
+        <h1 class="text-4xl font-bold text-gray-800">{{ 'Happy Paws Coaching' | trans }}</h1>
+        <p class="mt-4 text-xl text-gray-600">{{ 'Positive training for happy, well-behaved dogs' | trans }}</p>
+        <a href="#contact" class="mt-6 inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full transition">{{ 'Book a Session' | trans }}</a>
     </section>
     <section id="about" class="py-16 bg-white">
         <div class="container mx-auto px-4">

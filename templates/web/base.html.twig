@@ -8,7 +8,6 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
     {% endblock %}
-
     {% block javascripts %}
         {% block importmap %}{{ importmap('app') }}{% endblock %}
     {% endblock %}
@@ -21,17 +20,17 @@
                 <div class="relative inline-block text-left">
                     <div class="flex space-x-4 items-center">
                         {% if app.request.locale != 'en' %}
-                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'en'})) }}" title="English">
+                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'en'})) }}" title="{{ 'English' | trans }}">
                                 {{ ux_icon('circle-flags:lang-en', {'class': 'w-6 h-6'}) }}
                             </a>
                         {% endif %}
                         {% if app.request.locale != 'es' %}
-                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'es'})) }}" title="Español">
+                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'es'})) }}" title="{{ 'Spanish' | trans }}">
                                 {{ ux_icon('circle-flags:es-variant', {'class': 'w-6 h-6'}) }}
                             </a>
                         {% endif %}
                         {% if app.request.locale != 'ca' %}
-                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'ca'})) }}" title="Català">
+                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'ca'})) }}" title="{{ 'Catalan' | trans }}">
                                 {{ ux_icon('circle-flags:lang-ca', {'class': 'w-6 h-6'}) }}
                             </a>
                         {% endif %}
@@ -45,7 +44,7 @@
     </main>
     <footer class="bg-white border-t mt-8">
         <div class="container mx-auto px-4 py-4 text-sm text-center text-gray-500">
-            &copy; {{ "now"|date("Y") }} My Symfony App. All rights reserved.
+            &copy; {{ 'now' | date('Y') }} {{ project_title }}. {{ 'All rights reserved' | trans }}.
         </div>
     </footer>
 </body>
