@@ -1,5 +1,7 @@
 parameters:
     default_locale: 'ca'
+    short_project_title: 'ADC'
+    project_title: 'Andrea Dog Coach'
     delivery_dev_address: '%env(string:DEV_DELIVERY_ADDRESS)%'
     locale_i18n: [ 'es', 'en' ]
     locale_i18n_full: [ 'ca', 'es', 'en' ]

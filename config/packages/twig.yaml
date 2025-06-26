@@ -2,6 +2,11 @@ twig:
     file_name_pattern: '*.twig'
     form_themes:
         - 'tailwind_2_layout.html.twig'
+    globals:
+        google_tag_manager_enabled: false
+        #google_tag_manager_api_key: '%env(string:GOOGLE_TAG_MANAGER_ACCOUNT)%'
+        short_project_title: '%short_project_title%'
+        project_title: '%project_title%'
 
 when@test:
     twig:

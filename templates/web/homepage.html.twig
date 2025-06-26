@@ -1,5 +1,48 @@
 {% extends 'web/base.html.twig' %}
 
+{% block title %}Happy Paws Coaching · {{ parent() }}{% endblock %}
+
 {% block body %}
-    body
+    <section class="text-center py-20 bg-yellow-100">
+        <h1 class="text-4xl font-bold text-gray-800">Happy Paws Dog Coaching</h1>
+        <p class="mt-4 text-xl text-gray-600">Positive training for happy, well-behaved dogs</p>
+        <a href="#contact" class="mt-6 inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full transition">Book a Session</a>
+    </section>
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-4">Meet Your Dog Coach</h2>
+            <p class="text-gray-700 leading-relaxed">With years of experience and a passion for canine behavior, I help dog owners build lasting, respectful relationships with their pets using positive reinforcement techniques.</p>
+        </div>
+    </section>
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">Our Services</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white shadow p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Puppy Training</h3>
+                    <p class="text-gray-600">Get your puppy started with good habits from day one.</p>
+                </div>
+                <div class="bg-white shadow p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Obedience Coaching</h3>
+                    <p class="text-gray-600">Basic to advanced commands, leash training, and more.</p>
+                </div>
+                <div class="bg-white shadow p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Behavioral Issues</h3>
+                    <p class="text-gray-600">Address barking, aggression, anxiety, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-xl">
+            <h2 class="text-2xl font-bold mb-6">Contact Me</h2>
+            <p class="mb-4 text-gray-700">Have questions or ready to book a session? Get in touch!</p>
+            <form action="#" method="POST" class="space-y-4">
+                <input type="text" name="name" placeholder="Your Name" class="w-full border p-3 rounded">
+                <input type="email" name="email" placeholder="Your Email" class="w-full border p-3 rounded">
+                <textarea name="message" rows="5" placeholder="Your Message" class="w-full border p-3 rounded"></textarea>
+                <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded">Send Message</button>
+            </form>
+        </div>
+    </section>
 {% endblock %}
