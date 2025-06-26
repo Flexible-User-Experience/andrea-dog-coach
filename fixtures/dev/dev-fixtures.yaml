@@ -10,7 +10,7 @@ App\Entity\Service:
     name: 'Servei d''Educació i Psicologia Canina'
     position: 1
   service2:
-    name: 'Rehabilitación de conducta'
+    name: 'Rehabilitació de conducta'
     position: 2
   service3:
     name: 'Socialización Canina'
@@ -35,3 +35,18 @@ App\Entity\Translations\ServiceTranslation:
    locale: 'de'
    field: 'name'
    content: 'Dienst für Hundeerziehung und -psychologie'
+  service_translation_2_es:
+   object: '@service2'
+   locale: 'es'
+   field: 'name'
+   content: 'Rehabilitación de conducta'
+  service_translation_2_en:
+   object: '@service2'
+   locale: 'en'
+   field: 'name'
+   content: 'Behavioral Rehabilitation'
+  service_translation_2_de:
+   object: '@service2'
+   locale: 'de'
+   field: 'name'
+   content: 'Verhaltensrehabilitation'
