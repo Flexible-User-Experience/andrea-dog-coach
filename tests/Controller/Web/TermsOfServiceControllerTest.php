@@ -11,13 +11,13 @@ class TermsOfServiceControllerTest extends WebTestCase
     public function testSomething(): void
     {
         $client = static::createClient();
-        $client->request(Request::METHOD_GET, RoutesEnum::app_web_privacy_policy_ca);
+        $client->request(Request::METHOD_GET, RoutesEnum::app_web_privacy_policy_path_ca);
         self::assertResponseIsSuccessful();
-        $client->request(Request::METHOD_GET, sprintf('/es%s', RoutesEnum::app_web_privacy_policy_es));
+        $client->request(Request::METHOD_GET, sprintf('/es%s', RoutesEnum::app_web_privacy_policy_path_es));
         self::assertResponseIsSuccessful();
-        $client->request(Request::METHOD_GET, sprintf('/en%s', RoutesEnum::app_web_privacy_policy_en));
+        $client->request(Request::METHOD_GET, sprintf('/en%s', RoutesEnum::app_web_privacy_policy_path_en));
         self::assertResponseIsSuccessful();
-        $client->request(Request::METHOD_GET, sprintf('/de%s', RoutesEnum::app_web_privacy_policy_de));
+        $client->request(Request::METHOD_GET, sprintf('/de%s', RoutesEnum::app_web_privacy_policy_path_de));
         self::assertResponseIsSuccessful();
     }
 }

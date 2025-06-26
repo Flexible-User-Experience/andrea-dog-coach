@@ -6,7 +6,7 @@ use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
 
-final class AssetsManager
+final readonly class AssetsManager
 {
     public const string MIME_APPLICATION_PDF_TYPE = 'application/pdf';
     public const string MIME_APPLICATION_PDF_X_TYPE = 'application/x-pdf';

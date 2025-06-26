@@ -3,6 +3,7 @@
 namespace App\Controller\Web;
 
 use App\Entity\ContactMessage;
+use App\Enum\RoutesEnum;
 use App\Form\Type\ContactMessageFormType;
 use App\Manager\MailerManager;
 use App\Repository\ContactMessageRepository;
@@ -12,11 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class MainController extends AbstractController
+final class MainController extends AbstractController
 {
     #[Route(
         path: '/',
-        name: 'app_web_homepage',
+        name: RoutesEnum::app_web_homepage_route,
     )]
     public function homepage(Request $request, ServiceRepository $sr, ContactMessageRepository $cmr, MailerManager $mm): Response
     {

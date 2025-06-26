@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"App\\Tests\\Controller\\Web\\TermsOfServiceControllerTest::testSomething":1.071}}
+{"version":1,"defects":{"App\\Tests\\Controller\\Web\\MainControllerTest::testSomething":7},"times":{"App\\Tests\\Controller\\Web\\TermsOfServiceControllerTest::testSomething":0.028,"App\\Tests\\Controller\\Web\\MainControllerTest::testSomething":1.173}}

@@ -7,16 +7,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class TermsOfServiceController extends AbstractController
+final class TermsOfServiceController extends AbstractController
 {
     #[Route(
         path: [
-            'ca' => RoutesEnum::app_web_privacy_policy_ca,
-            'es' => RoutesEnum::app_web_privacy_policy_es,
-            'en' => RoutesEnum::app_web_privacy_policy_en,
-            'de' => RoutesEnum::app_web_privacy_policy_de,
+            'ca' => RoutesEnum::app_web_privacy_policy_path_ca,
+            'es' => RoutesEnum::app_web_privacy_policy_path_es,
+            'en' => RoutesEnum::app_web_privacy_policy_path_en,
+            'de' => RoutesEnum::app_web_privacy_policy_path_de,
         ],
-        name: 'app_web_privacy_policy',
+        name: RoutesEnum::app_web_privacy_policy_route,
     )]
     public function projectsList(): Response
     {
