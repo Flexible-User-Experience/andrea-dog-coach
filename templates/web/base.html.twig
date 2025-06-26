@@ -18,8 +18,19 @@
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <h1 class="text-xl font-bold">{{ project_title }}</h1>
             <nav class="space-x-4">
-                <a href="{{ path('app_web_homepage') }}" class="text-blue-500 hover:underline">Home</a>
-                {# Add more links as needed #}
+                <div class="relative inline-block text-left">
+                    <div class="flex space-x-4 items-center">
+                        <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'en'})) }}" title="English">
+                            {{ ux_icon('circle-flags:lang-en') }}
+                        </a>
+                        <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'es'})) }}" title="Español">
+                            {{ ux_icon('circle-flags:es-variant') }}
+                        </a>
+                        <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'ca'})) }}" title="Català">
+                            {{ ux_icon('circle-flags:lang-ca') }}
+                        </a>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
