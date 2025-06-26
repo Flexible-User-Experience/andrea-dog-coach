@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Entity\Traits\BeginDateTrait;
-use App\Entity\Traits\CustomerTrait;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\DocumentTrait;
 use App\Entity\Traits\EndDateTrait;
@@ -33,7 +32,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Project extends AbstractBase
 {
     use BeginDateTrait;
-    use CustomerTrait;
     use DescriptionTrait;
     use DocumentTrait;
     use EndDateTrait;
@@ -46,11 +44,8 @@ class Project extends AbstractBase
     public const int DEFAULT_YEAR = 2024;
 
     #[Assert\Valid]
-    #[ORM\OneToMany(mappedBy: 'object', targetEntity: ProjectTranslation::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: ProjectTranslation::class, mappedBy: 'object', cascade: ['persist', 'remove'])]
     private ?Collection $translations;
-
-    #[ORM\ManyToOne(targetEntity: Customer::class, inversedBy: 'invoices')]
-    private Customer $customer;
 
     #[Assert\Count(min: 1)]
     #[Assert\Valid]
