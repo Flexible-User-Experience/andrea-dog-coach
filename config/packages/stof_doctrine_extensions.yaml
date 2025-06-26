@@ -9,4 +9,3 @@ stof_doctrine_extensions:
             softdeleteable: false
             sortable: false
             tree: false
-
