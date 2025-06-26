@@ -20,15 +20,21 @@
             <nav class="space-x-4">
                 <div class="relative inline-block text-left">
                     <div class="flex space-x-4 items-center">
-                        <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'en'})) }}" title="English">
-                            {{ ux_icon('circle-flags:lang-en') }}
-                        </a>
-                        <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'es'})) }}" title="Español">
-                            {{ ux_icon('circle-flags:es-variant') }}
-                        </a>
-                        <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'ca'})) }}" title="Català">
-                            {{ ux_icon('circle-flags:lang-ca') }}
-                        </a>
+                        {% if app.request.locale != 'en' %}
+                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'en'})) }}" title="English">
+                                {{ ux_icon('circle-flags:lang-en', {'class': 'w-6 h-6'}) }}
+                            </a>
+                        {% endif %}
+                        {% if app.request.locale != 'es' %}
+                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'es'})) }}" title="Español">
+                                {{ ux_icon('circle-flags:es-variant', {'class': 'w-6 h-6'}) }}
+                            </a>
+                        {% endif %}
+                        {% if app.request.locale != 'ca' %}
+                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'ca'})) }}" title="Català">
+                                {{ ux_icon('circle-flags:lang-ca', {'class': 'w-6 h-6'}) }}
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </nav>
