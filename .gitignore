@@ -11,6 +11,8 @@ google_apis_credentials.json
 /var/*.db
 /var/cache/*
 !/var/cache/.gitkeep
+/var/database/*
+!/var/database/.gitkeep
 /var/csv/*
 !/var/csv/.gitkeep
 /var/log/*
