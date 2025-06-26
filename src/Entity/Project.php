@@ -53,7 +53,7 @@ class Project extends AbstractBase
     private ?Collection $projectCategories;
 
     #[Assert\Valid]
-    #[ORM\OneToMany(mappedBy: 'project', targetEntity: ProjectImage::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: ProjectImage::class, mappedBy: 'project', cascade: ['persist', 'remove'])]
     #[ORM\OrderBy(['position' => 'ASC'])]
     private ?Collection $images;
 

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\ImageFileTrait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\PositionTrait;
@@ -24,6 +25,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 class Service extends AbstractBase
 {
+    use DescriptionTrait;
     use ImageFileTrait;
     use NameTrait;
     use PositionTrait;
@@ -31,18 +33,22 @@ class Service extends AbstractBase
     use TranslationTrait;
 
     #[Assert\Valid]
-    #[ORM\OneToMany(mappedBy: 'service', targetEntity: ServiceListItem::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: ServiceListItem::class, mappedBy: 'service', cascade: ['persist', 'remove'])]
     #[ORM\OrderBy(['position' => 'ASC'])]
     private ?Collection $items;
 
     #[Assert\Valid]
-    #[ORM\OneToMany(mappedBy: 'object', targetEntity: ServiceTranslation::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: ServiceTranslation::class, mappedBy: 'object', cascade: ['persist', 'remove'])]
     private ?Collection $translations;
 
     #[Assert\NotBlank]
     #[Gedmo\Translatable]
     #[ORM\Column(type: Types::STRING, length: 255)]
     private string $name;
+
+    #[Gedmo\Translatable]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
 
     #[Assert\Image(maxSize: '10M', mimeTypes: [
         AssetsManager::MIME_IMAGE_JPG_TYPE,
