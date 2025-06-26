@@ -3,6 +3,7 @@
 namespace App\Admin;
 
 use App\Entity\AbstractBase;
+use App\Enum\RoutesEnum;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
@@ -18,7 +19,7 @@ final class ContactMessageAdmin extends AbstractBaseAdmin
 {
     public function generateBaseRoutePattern(bool $isChildAdmin = false): string
     {
-        return 'contact-message';
+        return RoutesEnum::app_admin_contact_message_path;
     }
 
     protected function configureRoutes(RouteCollectionInterface $collection): void

@@ -16,4 +16,6 @@ final readonly class RoutesEnum
     public const string app_web_privacy_policy_path_es = '/politica-de-privacidad';
     public const string app_web_privacy_policy_path_en = '/privacy-policy/';
     public const string app_web_privacy_policy_path_de = '/datenschutzrichtlinie';
+    // admin
+    public const string app_admin_contact_message_path = 'contact-message';
 }
