@@ -11,4 +11,5 @@ TODO
  * add ReCaptcha
  * add Google Analytics
  * add Cookie Consent management
+ * add Sitemap builder
  * config Symfony mailer
