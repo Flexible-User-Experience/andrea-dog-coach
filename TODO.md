@@ -8,3 +8,4 @@ TODO
  * add CTA button related with WhatsApp
  * secure Sonata Admin login
  * manage Symfony Messenger queues
+ * add rotating logs

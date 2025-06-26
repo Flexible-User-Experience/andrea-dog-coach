@@ -1,1 +1,1 @@
-{"version":1,"defects":{"App\\Tests\\Controller\\Web\\MainControllerTest::testSomething":7},"times":{"App\\Tests\\Controller\\Web\\TermsOfServiceControllerTest::testSomething":0.022,"App\\Tests\\Controller\\Web\\MainControllerTest::testSomething":1.31}}
+{"version":1,"defects":{"App\\Tests\\Controller\\Web\\MainControllerTest::testSomething":7},"times":{"App\\Tests\\Controller\\Web\\TermsOfServiceControllerTest::testSomething":0.019,"App\\Tests\\Controller\\Web\\MainControllerTest::testSomething":0.173}}
