@@ -22,7 +22,7 @@ final class FrontendVoter extends Voter
         return false;
     }
 
-    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
+    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token/* , ?Vote $vote = null */): bool
     {
         return match ($attribute) {
             self::ACTIVE => $this->isActive($subject),
