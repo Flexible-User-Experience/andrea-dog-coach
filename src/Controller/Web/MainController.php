@@ -35,6 +35,7 @@ class MainController extends AbstractController
             'ca' => '/projectes',
             'es' => '/proyectos',
             'en' => '/projects',
+            'de' => '/projects',
         ],
         name: 'app_web_projects_list',
     )]

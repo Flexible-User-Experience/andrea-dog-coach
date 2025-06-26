@@ -7,3 +7,4 @@ controllers:
         ca: ''
         es: 'es'
         en: 'en'
+        de: 'de'

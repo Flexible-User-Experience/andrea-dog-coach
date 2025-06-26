@@ -19,6 +19,11 @@
             <nav class="space-x-4">
                 <div class="relative inline-block text-left">
                     <div class="flex space-x-4 items-center">
+                        {% if app.request.locale != 'de' %}
+                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'de'})) }}" title="{{ 'Deutsch' | trans }}">
+                                {{ ux_icon('circle-flags:de', {'class': 'w-6 h-6'}) }}
+                            </a>
+                        {% endif %}
                         {% if app.request.locale != 'en' %}
                             <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'en'})) }}" title="{{ 'English' | trans }}">
                                 {{ ux_icon('circle-flags:lang-en', {'class': 'w-6 h-6'}) }}
