@@ -1,0 +1,51 @@
+###> app/bundle ###
+auth.json
+google_apis_credentials.json
+/public/images/projects/*
+!/public/images/projects/.gitkeep
+!/public/uploads/.gitkeep
+/src/.preload.php
+.php_cs.cache
+.php-cs-fixer.cache
+/var/*.db
+/var/cache/*
+!/var/cache/.gitkeep
+/var/csv/*
+!/var/csv/.gitkeep
+/var/log/*
+!/var/log/.gitkeep
+/var/sessions/*
+!/var/sessions/.gitkeep
+/var/uploads/*
+!/var/uploads/.gitkeep
+/var/testing-database.db
+.env
+.env.test
+.idea
+.DS_Store
+###< app/bundle ###
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
