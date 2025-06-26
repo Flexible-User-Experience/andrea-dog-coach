@@ -1,0 +1,52 @@
+App\Entity\ContactMessage:
+  contactmessage{1..5}:
+    legacyId: '<current()>'
+    name: '<company()>'
+    email: '<safeEmail()>'
+    message: '<sentence()>'
+
+App\Entity\Service:
+  service{1..5}:
+    legacyId: '<current()>'
+    name: '<name()>'
+    imageName: 'lorem-picsum.jpg'
+    position: '<current()>'
+
+App\Entity\ServiceListItem:
+  servicelistitem{1..5}:
+    service: '@service<current()>'
+    legacyId: '<current()>'
+    name: '<name()>'
+    position: '<current()>'
+
+App\Entity\ProjectCategory:
+  projectcategory{1..5}:
+    legacyId: '<current()>'
+    name: '<firstName()>'
+
+App\Entity\Project:
+  project1:
+    projectCategories:
+      - '@projectcategory1'
+    legacyId: 1
+    name: 'project 1'
+    location: 'location 1'
+    year: 2024
+    description: '<paragraph()>'
+    position: 1
+  project{2..5}:
+    projectCategories:
+      - '@projectcategory<current()>'
+    legacyId: '<current()>'
+    name: 'project <current()>'
+    year: '<numberBetween(2020, 2023)>'
+    description: '<paragraph()>'
+    position: '<current()>'
+
+App\Entity\ProjectImage:
+  projectimage{1..5}:
+    project: '@project<current()>'
+    legacyId: '<current()>'
+    name: '<name()>'
+    imageName: 'lorem-picsum.jpg'
+    position: '<current()>'
