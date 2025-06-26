@@ -16,7 +16,6 @@
       - "public/documents"
       - "public/images"
       - "var/log"
-      - "var/uploads"
       - "var/database"
     ansistrano_shared_files: []
     ansistrano_ensure_shared_paths_exist: yes
