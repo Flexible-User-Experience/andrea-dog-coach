@@ -11,7 +11,7 @@
     <section id="about" class="text-center py-16 bg-white">
         <div class="container mx-auto px-4">
             <h2 class="text-2xl font-bold mb-4">{{ 'Meet Your Dog Coach' | trans }}</h2>
-            <img src="{{ asset('images/main_image.png') }}" alt="{{ 'Meet Your Dog Coach' | trans }}" class="mx-auto max-w-full h-auto mb-6 rounded-3xl" />
+            <img src="{{ asset('images/main_image.png') | imagine_filter('960xY') }}" alt="{{ 'Meet Your Dog Coach' | trans }}" class="mx-auto max-w-full h-auto mb-6 rounded-3xl" />
             <p class="text-gray-700 leading-relaxed">{{ 'Meet Your Dog Coach Description' | trans }}</p>
         </div>
     </section>
