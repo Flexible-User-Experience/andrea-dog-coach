@@ -1,0 +1,82 @@
+App\Entity\ContactMessage:
+  contactmessage{1..5}:
+    legacyId: '<current()>'
+    name: '<company()>'
+    email: '<safeEmail()>'
+    message: '<sentence()>'
+
+App\Entity\Service:
+  service1:
+    name: 'Servei d''Educació i Psicologia Canina'
+    position: 1
+  service2:
+    name: 'Rehabilitació de conducta'
+    position: 2
+  service3:
+    name: 'Socialització Canina'
+    position: 3
+  service4:
+    name: 'Activitat física en grup'
+    position: 4
+
+App\Entity\Translations\ServiceTranslation:
+  service_translation_1_es:
+   object: '@service1'
+   locale: 'es'
+   field: 'name'
+   content: 'Servicio de Educación i Psicología Canina'
+  service_translation_1_en:
+   object: '@service1'
+   locale: 'en'
+   field: 'name'
+   content: 'Canine Education and Psychology Service'
+  service_translation_1_de:
+   object: '@service1'
+   locale: 'de'
+   field: 'name'
+   content: 'Dienst für Hundeerziehung und -psychologie'
+  service_translation_2_es:
+   object: '@service2'
+   locale: 'es'
+   field: 'name'
+   content: 'Rehabilitación de conducta'
+  service_translation_2_en:
+   object: '@service2'
+   locale: 'en'
+   field: 'name'
+   content: 'Behavioral Rehabilitation'
+  service_translation_2_de:
+   object: '@service2'
+   locale: 'de'
+   field: 'name'
+   content: 'Verhaltensrehabilitation'
+  service_translation_3_es:
+   object: '@service3'
+   locale: 'es'
+   field: 'name'
+   content: 'Socialización Canina'
+  service_translation_3_en:
+   object: '@service3'
+   locale: 'en'
+   field: 'name'
+   content: 'Canine Socialization'
+  service_translation_3_de:
+   object: '@service3'
+   locale: 'de'
+   field: 'name'
+   content: 'Hundesozialisierung'
+  service_translation_4_es:
+   object: '@service4'
+   locale: 'es'
+   field: 'name'
+   content: 'Actividad física en grupo'
+  service_translation_4_en:
+   object: '@service4'
+   locale: 'en'
+   field: 'name'
+   content: 'Group Physical Activity'
+  service_translation_4_de:
+   object: '@service4'
+   locale: 'de'
+   field: 'name'
+   content: 'Körperliche Gruppenaktivität'
