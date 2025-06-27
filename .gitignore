@@ -47,6 +47,8 @@ google_apis_credentials.json
 
 ###> liip/imagine-bundle ###
 /public/media/cache/
+/public/images/services/*
+!/public/images/services/.gitkeep
 ###< liip/imagine-bundle ###
 
 ###> symfony/webpack-encore-bundle ###

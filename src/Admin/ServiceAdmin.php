@@ -15,6 +15,7 @@ use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
@@ -138,6 +139,13 @@ final class ServiceAdmin extends AbstractBaseAdmin
                     'required' => true,
                 ]
             )
+            ->add(
+                'description',
+                TextareaType::class,
+                [
+                    'required' => false,
+                ]
+            )
             ->end()
             ->with(
                 'Translations',
@@ -158,22 +166,16 @@ final class ServiceAdmin extends AbstractBaseAdmin
                             'required' => true,
                             'field_type' => TextType::class,
                         ],
+                        'description' => [
+                            'required' => false,
+                            'field_type' => TextareaType::class,
+                        ],
                     ],
                 ]
             )
             ->end()
         ;
         if (!$this->isFormToCreateNewRecord()) {
-            $form
-                ->with(
-                    'List Items',
-                    [
-                        'class' => 'col-md-12',
-                        'box_class' => 'box box-success',
-                    ]
-                )
-                ->end()
-            ;
             $form
                 ->with(
                     'Controls',
