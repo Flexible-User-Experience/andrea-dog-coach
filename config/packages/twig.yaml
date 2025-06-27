@@ -6,6 +6,8 @@ twig:
         '%kernel.project_dir%/assets/images': 'images'
     form_themes:
         - 'tailwind_2_layout.html.twig'
+        - '@App/form_templates/vich_uploader_form_fields.html.twig'
+        - '@App/form_templates/adapted_a2lix_translation_form.html.twig'
     globals:
         google_tag_manager_enabled: false
         #google_tag_manager_api_key: '%env(string:GOOGLE_TAG_MANAGER_ACCOUNT)%'

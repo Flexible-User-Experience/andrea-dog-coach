@@ -14,7 +14,6 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
-use Sonata\Form\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -171,22 +170,6 @@ final class ServiceAdmin extends AbstractBaseAdmin
                     [
                         'class' => 'col-md-12',
                         'box_class' => 'box box-success',
-                    ]
-                )
-                ->add(
-                    'items',
-                    CollectionType::class,
-                    [
-                        'label' => false,
-                        'required' => false,
-                        'error_bubbling' => true,
-                        'by_reference' => false,
-                    ],
-                    [
-                        'edit' => 'inline',
-                        'inline' => 'table',
-                        'sortable' => 'position',
-                        'order' => SortOrderEnum::ASCENDING->value,
                     ]
                 )
                 ->end()
