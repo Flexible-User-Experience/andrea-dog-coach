@@ -42,6 +42,7 @@ google_apis_credentials.json
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
+.phpunit.cache
 ###< phpunit/phpunit ###
 
 ###> liip/imagine-bundle ###
