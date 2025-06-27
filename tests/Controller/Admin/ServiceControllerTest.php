@@ -15,7 +15,7 @@ class ServiceControllerTest extends WebTestCase
         self::assertResponseIsSuccessful();
         $client->request(Request::METHOD_GET, sprintf('/admin/%s/1/delete', RoutesEnum::app_admin_service_path));
         self::assertResponseIsSuccessful();
-        $client->request(Request::METHOD_GET, sprintf('/admin/%s/1/show', RoutesEnum::app_admin_service_path));
+        $client->request(Request::METHOD_GET, sprintf('/admin/%s/1/edit', RoutesEnum::app_admin_service_path));
         self::assertResponseIsSuccessful();
     }
 }

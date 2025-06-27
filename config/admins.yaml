@@ -1,10 +1,10 @@
 services:
-#    admin.service:
-#        class: 'App\Admin\ServiceAdmin'
-#        tags:
-#            - { name: 'sonata.admin', model_class: 'App\Entity\Service', controller: 'App\Controller\Admin\ServiceAdminController', manager_type: 'orm', label: 'Service', group: 'Web' }
-#        calls:
-#            - [ 'setEntityManager', [ '@doctrine.orm.entity_manager' ] ]
+    admin.service:
+        class: 'App\Admin\ServiceAdmin'
+        tags:
+            - { name: 'sonata.admin', model_class: 'App\Entity\Service', controller: 'App\Controller\Admin\ServiceAdminController', manager_type: 'orm', label: 'Service', group: 'Web' }
+        calls:
+            - [ 'setEntityManager', [ '@doctrine.orm.entity_manager' ] ]
     admin.contact_message:
         class: 'App\Admin\ContactMessageAdmin'
         tags:
