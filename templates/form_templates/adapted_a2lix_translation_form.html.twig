@@ -9,6 +9,8 @@
                             {% set language = 'spanish' | trans %}
                         {% elseif locale == 'en' %}
                             {% set language = 'english' | trans %}
+                        {% elseif locale == 'de' %}
+                            {% set language = 'german' | trans %}
                         {% endif %}
                         <span class="text-success">{{ language | capitalize }}</span>
                     </a>
