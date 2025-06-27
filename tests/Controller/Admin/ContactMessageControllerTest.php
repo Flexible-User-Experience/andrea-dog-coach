@@ -17,5 +17,7 @@ class ContactMessageControllerTest extends WebTestCase
         self::assertResponseIsSuccessful();
         $client->request(Request::METHOD_GET, sprintf('/admin/%s/1/show', RoutesEnum::app_admin_contact_message_path));
         self::assertResponseIsSuccessful();
+        $client->request(Request::METHOD_GET, sprintf('/admin/%s/1/reply', RoutesEnum::app_admin_contact_message_path));
+        self::assertResponseIsSuccessful();
     }
 }
