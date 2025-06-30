@@ -6,6 +6,7 @@ final readonly class RoutesEnum
 {
     // routes
     public const string app_web_homepage_route = 'app_web_homepage';
+    public const string app_web_services_route = 'app_web_services';
     public const string app_web_privacy_policy_route = 'app_web_privacy_policy';
     // paths
     public const string app_web_homepage_path_ca = '/';
