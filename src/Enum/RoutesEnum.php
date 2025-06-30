@@ -7,6 +7,7 @@ final readonly class RoutesEnum
     // routes
     public const string app_web_homepage_route = 'app_web_homepage';
     public const string app_web_services_route = 'app_web_services';
+    public const string app_web_contact_us_route = 'app_web_contact_us';
     public const string app_web_privacy_policy_route = 'app_web_privacy_policy';
     // paths
     public const string app_web_homepage_path_ca = '/';
@@ -17,6 +18,10 @@ final readonly class RoutesEnum
     public const string app_web_services_path_es = '/servicios';
     public const string app_web_services_path_en = '/services';
     public const string app_web_services_path_de = '/dienste';
+    public const string app_web_contact_us_path_ca = '/contacte';
+    public const string app_web_contact_us_path_es = '/contacto';
+    public const string app_web_contact_us_path_en = '/contact-us';
+    public const string app_web_contact_us_path_de = '/kontaktieren-sie-uns';
     public const string app_web_privacy_policy_path_ca = '/politica-de-privacitat';
     public const string app_web_privacy_policy_path_es = '/politica-de-privacidad';
     public const string app_web_privacy_policy_path_en = '/privacy-policy/';

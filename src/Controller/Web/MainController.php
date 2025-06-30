@@ -61,4 +61,20 @@ final class MainController extends AbstractController
             'services' => $sr->getActiveAndShowInFrontendSortedByPosition(),
         ]);
     }
+
+    #[Route(
+        path: [
+            LocaleEnum::ca => RoutesEnum::app_web_contact_us_path_ca,
+            LocaleEnum::es => RoutesEnum::app_web_contact_us_path_es,
+            LocaleEnum::en => RoutesEnum::app_web_contact_us_path_en,
+            LocaleEnum::de => RoutesEnum::app_web_contact_us_path_de,
+        ],
+        name: RoutesEnum::app_web_contact_us_route,
+    )]
+    public function contactUs(ServiceRepository $sr): Response
+    {
+        return $this->render('web/services.html.twig', [
+            'services' => $sr->getActiveAndShowInFrontendSortedByPosition(),
+        ]);
+    }
 }
