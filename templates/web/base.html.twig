@@ -49,19 +49,19 @@
         <nav class="bg-dusk shadow-sm">
             <div class="container mx-auto py-4">
                 <div class="text-center">
-                    <ul class="flex space-x-12 text-lg text-white font-semibold">
+                    <ul class="flex space-x-6 text-lg text-white">
                         <li class="px-6">
-                            <a href="{{ path(constant('App\\Enum\\RoutesEnum::app_web_homepage_route')) }}" class="hover:underline hover:text-white/80">
+                            <a href="{{ path(constant('App\\Enum\\RoutesEnum::app_web_homepage_route')) }}" class="transition-all duration-300 ease-in-out px-4 py-1 rounded {% if app.current_route == constant('App\\Enum\\RoutesEnum::app_web_homepage_route') %}bg-brand/40{% else %}hover:bg-brand/30{% endif %}">
                                 {{ 'Home' | trans }}
                             </a>
                         </li>
                         <li class="px-6">
-                            <a href="{{ path(constant('App\\Enum\\RoutesEnum::app_web_services_route')) }}" class="hover:underline hover:text-white/80">
+                            <a href="{{ path(constant('App\\Enum\\RoutesEnum::app_web_services_route')) }}" class="transition-all duration-300 ease-in-out px-4 py-1 rounded {% if app.current_route == constant('App\\Enum\\RoutesEnum::app_web_services_route') %}bg-brand/40{% else %}hover:bg-brand/30{% endif %}">
                                 {{ 'Services' | trans }}
                             </a>
                         </li>
                         <li class="px-6">
-                            <a href="{{ path(constant('App\\Enum\\RoutesEnum::app_web_contact_us_route')) }}" class="hover:underline hover:text-white/80">
+                            <a href="{{ path(constant('App\\Enum\\RoutesEnum::app_web_contact_us_route')) }}" class="transition-all duration-300 ease-in-out px-4 py-1 rounded {% if app.current_route == constant('App\\Enum\\RoutesEnum::app_web_contact_us_route') %}bg-brand/40{% else %}hover:bg-brand/30{% endif %}">
                                 {{ 'Contact Us' | trans }}
                             </a>
                         </li>
