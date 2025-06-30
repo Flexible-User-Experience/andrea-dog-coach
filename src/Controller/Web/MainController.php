@@ -48,10 +48,10 @@ final class MainController extends AbstractController
 
     #[Route(
         path: [
-            LocaleEnum::ca => '/serveis',
-            LocaleEnum::es => '/servicios',
-            LocaleEnum::en => '/services',
-            LocaleEnum::de => '/dienste',
+            LocaleEnum::ca => RoutesEnum::app_web_services_path_ca,
+            LocaleEnum::es => RoutesEnum::app_web_services_path_es,
+            LocaleEnum::en => RoutesEnum::app_web_services_path_en,
+            LocaleEnum::de => RoutesEnum::app_web_services_path_de,
         ],
         name: RoutesEnum::app_web_services_route,
     )]

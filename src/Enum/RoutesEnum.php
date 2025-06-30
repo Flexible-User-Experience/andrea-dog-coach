@@ -13,6 +13,10 @@ final readonly class RoutesEnum
     public const string app_web_homepage_path_es = '/';
     public const string app_web_homepage_path_en = '/';
     public const string app_web_homepage_path_de = '/';
+    public const string app_web_services_path_ca = '/serveis';
+    public const string app_web_services_path_es = '/servicios';
+    public const string app_web_services_path_en = '/services';
+    public const string app_web_services_path_de = '/dienste';
     public const string app_web_privacy_policy_path_ca = '/politica-de-privacitat';
     public const string app_web_privacy_policy_path_es = '/politica-de-privacidad';
     public const string app_web_privacy_policy_path_en = '/privacy-policy/';
