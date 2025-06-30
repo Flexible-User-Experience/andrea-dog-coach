@@ -8,7 +8,6 @@ use App\Enum\RoutesEnum;
 use App\Form\Type\ContactMessageFormType;
 use App\Manager\MailerManager;
 use App\Repository\ContactMessageRepository;
-use App\Repository\ProjectRepository;
 use App\Repository\ServiceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,18 +48,17 @@ final class MainController extends AbstractController
 
     #[Route(
         path: [
-            LocaleEnum::ca => '/projectes',
-            LocaleEnum::es => '/proyectos',
-            LocaleEnum::en => '/projects',
-            LocaleEnum::de => '/projects',
+            LocaleEnum::ca => '/serveis',
+            LocaleEnum::es => '/servicios',
+            LocaleEnum::en => '/services',
+            LocaleEnum::de => '/dienste',
         ],
         name: RoutesEnum::app_web_services_route,
     )]
-    public function projectsList(ProjectRepository $pr): Response
+    public function servicesList(ServiceRepository $sr): Response
     {
-        return $this->render('web/projects.html.twig', [
-            'years' => $pr->getAvailableYearsArraySortedByValue(),
-            'projects' => $pr->getActiveAndShowInFrontendSortedByYearAndName(),
+        return $this->render('web/services.html.twig', [
+            'services' => $sr->getActiveAndShowInFrontendSortedByPosition(),
         ]);
     }
 }
