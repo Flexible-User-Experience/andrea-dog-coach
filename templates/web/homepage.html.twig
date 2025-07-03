@@ -6,7 +6,9 @@
     <section class="text-center py-20 bg-dusk rounded-3xl">
         <h1 class="text-4xl font-bold text-gray-800">{{ 'Happy Paws Coaching' | trans }}</h1>
         <p class="mt-4 text-xl text-gray-600">{{ 'Positive training for happy, well-behaved dogs' | trans }}</p>
-        <a href="#contact" class="mt-6 inline-block bg-brand hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded transition">{{ 'Book a Session' | trans }}</a>
+        <a href="#contact" class="mt-6 inline-flex items-center gap-x-2 bg-brand hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded transition">
+            {{ ux_icon('streamline-plump:pet-paw-remix', {'class': 'w-6 h-6'}) }} {{ 'Book a Session' | trans }}
+        </a>
     </section>
     <section id="about" class="text-center py-16 bg-white">
         <h2 class="text-2xl font-bold mb-4">{{ 'Meet Your Dog Coach' | trans }}</h2>
