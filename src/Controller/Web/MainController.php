@@ -19,6 +19,7 @@ final class MainController extends AbstractController
     #[Route(
         path: '/',
         name: RoutesEnum::app_web_homepage_route,
+        options: ['sitemap' => true]
     )]
     public function homepage(Request $request, ServiceRepository $sr, ContactMessageRepository $cmr, MailerManager $mm): Response
     {
@@ -53,6 +54,7 @@ final class MainController extends AbstractController
             LocaleEnum::de => RoutesEnum::app_web_services_path_de,
         ],
         name: RoutesEnum::app_web_services_route,
+        options: ['sitemap' => true]
     )]
     public function servicesList(ServiceRepository $sr): Response
     {
@@ -69,6 +71,7 @@ final class MainController extends AbstractController
             LocaleEnum::de => RoutesEnum::app_web_contact_us_path_de,
         ],
         name: RoutesEnum::app_web_contact_us_route,
+        options: ['sitemap' => true]
     )]
     public function contactUs(Request $request, ContactMessageRepository $cmr, MailerManager $mm): Response
     {

@@ -11,4 +11,5 @@ TODO
  * add Google Analytics
  * add Cookie Consent management
  * add Sitemap builder
+ * add Terms Of Service page
  * config Symfony mailer
