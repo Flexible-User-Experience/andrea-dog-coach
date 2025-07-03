@@ -42,7 +42,6 @@ final class MainController extends AbstractController
                 'services' => $sr->getActiveAndShowInFrontendSortedByPosition(),
                 'form' => $form,
             ],
-            new Response(null, $form->isSubmitted() && !$form->isValid() ? Response::HTTP_UNPROCESSABLE_ENTITY : Response::HTTP_OK)
         );
     }
 
@@ -71,10 +70,24 @@ final class MainController extends AbstractController
         ],
         name: RoutesEnum::app_web_contact_us_route,
     )]
-    public function contactUs(ServiceRepository $sr): Response
+    public function contactUs(Request $request, ContactMessageRepository $cmr, MailerManager $mm): Response
     {
-        return $this->render('web/services.html.twig', [
-            'services' => $sr->getActiveAndShowInFrontendSortedByPosition(),
+        $contactMessage = new ContactMessage();
+        $form = $this->createForm(ContactMessageFormType::class, $contactMessage);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $cmr->add($contactMessage, true);
+            $mm->sendNewContactMessageFromNotificationToManager($contactMessage);
+            $this->addFlash(
+                'success',
+                'frontend.flash.on_contact_message_submit_success'
+            );
+
+            return $this->redirectToRoute('app_web_homepage');
+        }
+
+        return $this->render('web/contact_us.html.twig', [
+            'form' => $form,
         ]);
     }
 }
