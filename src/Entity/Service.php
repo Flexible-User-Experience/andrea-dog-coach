@@ -55,7 +55,7 @@ class Service extends AbstractBase
         AssetsManager::MIME_IMAGE_JPEG_TYPE,
         AssetsManager::MIME_IMAGE_PNG_TYPE,
         AssetsManager::MIME_IMAGE_GIF_TYPE,
-    ], minWidth: 1200)]
+    ], minWidth: 1024)]
     #[Vich\UploadableField(mapping: 'services', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
