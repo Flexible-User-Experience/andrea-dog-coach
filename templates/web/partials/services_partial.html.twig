@@ -1,0 +1,6 @@
+{% for service in services %}
+    <div class="bg-white shadow p-6 rounded-lg">
+        <h3 class="text-xl font-semibold">{{ service.name }}</h3>
+        <p class="text-gray-600">{{ service.description }}</p>
+    </div>
+{% endfor %}

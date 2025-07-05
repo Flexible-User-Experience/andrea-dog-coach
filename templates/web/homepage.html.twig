@@ -19,12 +19,7 @@
         <div class="container mx-auto px-4">
             <h2 class="text-2xl font-bold mb-6">{{ 'Our Services' | trans }}</h2>
             <div class="grid md:grid-cols-3 gap-6">
-                {% for service in services %}
-                    <div class="bg-white shadow p-6 rounded-lg">
-                        <h3 class="text-xl font-semibold">{{ service.name }}</h3>
-                        <p class="text-gray-600">{{ service.description }}</p>
-                    </div>
-                {% endfor %}
+                {% include '@App/web/partials/services_partial.html.twig' %}
             </div>
         </div>
     </section>
@@ -32,13 +27,7 @@
         <div class="container mx-auto px-4 max-w-xl">
             <h2 class="text-2xl font-bold mb-6">{{ 'Contact Me' | trans }}</h2>
             <p class="mb-4 text-gray-700">{{ 'Contact Me Description' | trans }}</p>
-            <form action="#" method="POST" class="space-y-4">
-                <input type="text" name="name" placeholder="{{ 'Your Name' | trans }}" class="w-full border p-3 rounded">
-                <input type="email" name="email" placeholder="{{ 'Your Email' | trans  }}" class="w-full border p-3 rounded">
-                <textarea name="message" rows="5" placeholder="{{ 'Your Message' | trans }}" class="w-full border p-3 rounded"></textarea>
-                <button type="submit" class="bg-brand hover:bg-yellow-600 text-white px-6 py-3 rounded transition cursor-pointer">{{ 'Send Message' | trans }}</button>
-            </form>
-            {{ form(form) }}
+            {% include '@App/web/partials/contact_us_partial.html.twig' %}
         </div>
     </section>
 {% endblock %}
