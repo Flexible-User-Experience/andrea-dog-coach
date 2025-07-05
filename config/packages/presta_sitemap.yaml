@@ -1,7 +1,7 @@
 presta_sitemap:
     defaults:
         priority: 1
-        changefreq: 'daily'
+        changefreq: 'weekly'
         lastmod: 'now'
     alternate:
         enabled: true
