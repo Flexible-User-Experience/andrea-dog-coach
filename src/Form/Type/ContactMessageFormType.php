@@ -35,7 +35,7 @@ final class ContactMessageFormType extends AbstractType
                     'label' => false,
                     'required' => false,
                     'attr' => [
-                        'placeholder' => 'Your Name',
+                        'placeholder' => 'Your Phone',
                     ],
                 ]
             )
@@ -80,7 +80,6 @@ final class ContactMessageFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => ContactMessage::class,
-            'labs' => ContactMessage::class,
         ]);
     }
 }

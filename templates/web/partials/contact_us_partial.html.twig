@@ -5,6 +5,12 @@
     <button type="submit" class="bg-brand hover:bg-yellow-600 text-white px-6 py-3 rounded transition cursor-pointer">{{ 'Send Message' | trans }}</button>
 </form>
 {{ form_start(form) }}
-    {{ form_row(form.name) }}
+    {{ form_row(form.name, {'attr': {'class': 'w-full border p-3 rounded'}}) }}
+    {{ form_row(form.mobileNumber, {'attr': {'class': 'w-full border p-3 rounded'}}) }}
+    {{ form_row(form.email, {'attr': {'class': 'w-full border p-3 rounded'}}) }}
+    {{ form_row(form.message, {'attr': {'class': 'w-full border p-3 rounded'}}) }}
+    <button type="submit" class="inline-flex items-center gap-x-2 bg-brand hover:bg-yellow-600 text-white px-6 py-3 rounded transition cursor-pointer">
+        {{ ux_icon('streamline-plump:pet-paw-remix', {'class': 'w-6 h-6'}) }} {{ 'Send Message' | trans }}
+    </button>
     {{ form_rest(form) }}
 {{ form_end(form) }}
