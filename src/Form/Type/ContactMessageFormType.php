@@ -21,30 +21,44 @@ final class ContactMessageFormType extends AbstractType
                 'name',
                 TextType::class,
                 [
+                    'label' => false,
                     'required' => true,
+                    'attr' => [
+                        'placeholder' => 'Your Name',
+                    ],
                 ]
             )
             ->add(
                 'mobileNumber',
                 TextType::class,
                 [
+                    'label' => false,
                     'required' => false,
+                    'attr' => [
+                        'placeholder' => 'Your Name',
+                    ],
                 ]
             )
             ->add(
                 'email',
                 EmailType::class,
                 [
+                    'label' => false,
                     'required' => true,
+                    'attr' => [
+                        'placeholder' => 'Your Email',
+                    ],
                 ]
             )
             ->add(
                 'message',
                 TextareaType::class,
                 [
+                    'label' => false,
                     'required' => true,
                     'attr' => [
                         'rows' => 5,
+                        'placeholder' => 'Your Message',
                     ],
                 ]
             )
