@@ -13,6 +13,11 @@ twig:
         #google_tag_manager_api_key: '%env(string:GOOGLE_TAG_MANAGER_ACCOUNT)%'
         short_project_title: '%short_project_title%'
         project_title: '%project_title%'
+        admin_tag_version: '%admin_tag_version%'
+        customer_name: '%env(string:CUSTOMER_NAME)%'
+        customer_url: '%env(string:CUSTOMER_URL)%'
+        developer_name: '%env(string:DEVELOPER_NAME)%'
+        developer_url: '%env(string:DEVELOPER_URL)%'
 
 when@test:
     twig:

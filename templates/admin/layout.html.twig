@@ -1,0 +1,29 @@
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
+
+{# custom logo #}
+{% block logo %}
+    <a class="logo" href="{{ path('sonata_admin_dashboard') }}" style="background-color:#F00;">
+        <img src="{{ asset('images/full_logo.png') }}" alt="{{ project_title }} logo" class="img-responsive" style="max-width:140px !important;margin-top:-3px">
+        <span>{{ project_title }}</span>
+    </a>
+{% endblock %}
+
+{# custom sidebar footer #}
+{% block side_bar_after_nav %}
+    <p class="text-left small right-sidebar-footer">
+        {{ project_title }} {{ admin_tag_version }}
+    </p>
+    <p class="text-left small">
+        <i class="fas fa-code"></i> {{ 'layout.developed_by' | trans }} <a href="{{ developer_url }}" target="_blank">{{ developer_name }}</a>
+    </p>
+    <p class="text-left small">
+        <i class="far fa-copyright"></i> {{ 'now' | date('Y') }} <a href="{{ customer_url }}" target="_blank">{{ customer_name }}</a>
+    </p>
+{% endblock %}
+
+{# custom top menu #}
+{% block sonata_top_nav_menu %}
+    <div class="navbar-custom-menu">
+{#        {{ knp_menu_render('top_right_nav_menu', {'currentClass': 'active', 'allow_safe_labels': true}) }}#}
+    </div>
+{% endblock %}
