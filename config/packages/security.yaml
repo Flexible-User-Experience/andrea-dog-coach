@@ -26,6 +26,18 @@ security:
             lazy: true
             pattern: '/admin(.*)'
             provider: 'backend_users'
+            entry_point: 'form_login'
+            context: 'admin'
+            form_login:
+                login_path: 'login'
+                check_path: 'login'
+                failure_path: 'login'
+                username_parameter: 'username'
+                password_parameter: 'password'
+                enable_csrf: true
+            logout:
+                path: 'logout'
+                target: 'login'
     access_control:
         - { path: ^/admin/login$, role: 'PUBLIC_ACCESS' }
         - { path: ^/admin/logout$, role: 'PUBLIC_ACCESS' }
