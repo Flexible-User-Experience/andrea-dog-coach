@@ -2,7 +2,7 @@
 
 {# custom logo #}
 {% block logo %}
-    <a class="logo" href="{{ path('sonata_admin_dashboard') }}" style="background-color:#F00;">
+    <a class="logo" href="{{ path('sonata_admin_dashboard') }}" style="background-color:#7F5330;">
         <img src="{{ asset('images/full_logo.png') }}" alt="{{ project_title }} logo" class="img-responsive" style="max-width:140px !important;margin-top:-3px">
         <span>{{ project_title }}</span>
     </a>
@@ -26,4 +26,9 @@
     <div class="navbar-custom-menu">
 {#        {{ knp_menu_render('top_right_nav_menu', {'currentClass': 'active', 'allow_safe_labels': true}) }}#}
     </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
 {% endblock %}
