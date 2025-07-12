@@ -12,6 +12,7 @@
 
 .login-box-bottom {
     padding: 5px !important;
+    background-color: oklch(0.82 0.15 72.089996) !important;
 }
 
 p.text-left.small {
@@ -37,4 +38,8 @@ canvas.pdf-canvas {
 
 .d-block {
     display: block !important;
+}
+
+.mr-1 {
+    margin-right: 2px !important;
 }
