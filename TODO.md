@@ -12,3 +12,4 @@ TODO
  * add Cookie Consent management
  * add Terms Of Service page
  * config Symfony mailer
+ * add social networks links: FB, IG, YT
