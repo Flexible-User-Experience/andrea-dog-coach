@@ -10,7 +10,7 @@ class ServiceControllerTest extends WebTestCase
 {
     public function testSomething(): void
     {
-        $client = static::createClient();
+        $client = ContactMessageControllerTest::getAdminAuthenticatedClient();
         $client->request(Request::METHOD_GET, sprintf('/admin/%s/list', RoutesEnum::app_admin_service_path));
         self::assertResponseIsSuccessful();
         $client->request(Request::METHOD_GET, sprintf('/admin/%s/1/delete', RoutesEnum::app_admin_service_path));

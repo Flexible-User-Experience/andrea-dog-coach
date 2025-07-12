@@ -21,9 +21,10 @@ when@dev:
     monolog:
         handlers:
             main:
-                type: 'stream'
+                type: 'rotating_file'
                 path: '%kernel.logs_dir%/%kernel.environment%.log'
                 level: 'debug'
+                max_files: 10
                 channels: [ '!event' ]
             console:
                 type: 'console'
@@ -38,11 +39,12 @@ when@test:
                 action_level: 'error'
                 handler: 'nested'
                 excluded_http_codes: [ 404, 405 ]
-                channels: ['!event']
+                channels: [ '!event' ]
             nested:
-                type: 'stream'
+                type: 'rotating_file'
                 path: '%kernel.logs_dir%/%kernel.environment%.log'
                 level: 'debug'
+                max_files: 1
 
 when@prod:
     monolog:
