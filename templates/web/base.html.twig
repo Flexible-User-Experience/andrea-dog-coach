@@ -70,7 +70,7 @@
             </div>
         </nav>
     </header>
-    <main class="flex-grow max-w-5xl mx-auto my-8 p-4 bg-white rounded-3xl shadow-md">
+    <main class="{% block main_body_class %}flex-grow max-w-5xl mx-auto my-8 p-4 bg-white rounded-3xl shadow-md{% endblock %}">
         {% block body %}{% endblock %}
     </main>
     <footer class="bg-white">
