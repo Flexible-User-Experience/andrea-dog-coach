@@ -4,10 +4,9 @@ framework:
         texter_transports:
             sendgrid: '%env(MAILER_DSN)%'
         channel_policy:
-            # use chat/slack, chat/telegram, sms/twilio or sms/nexmo
-            urgent: ['email']
-            high: ['email']
-            medium: ['email']
-            low: ['email']
+            urgent: [ 'email' ]
+            high: [ 'email' ]
+            medium: [ 'email' ]
+            low: [ 'email' ]
         admin_recipients:
-            - { email: admin@example.com }
+            - { email: '%customer_delivery_address%' }
