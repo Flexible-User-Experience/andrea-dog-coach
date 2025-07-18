@@ -11,8 +11,10 @@
     {% block javascripts %}
         {% block importmap %}{{ importmap('app') }}{% endblock %}
     {% endblock %}
+    {{ ev_cookie_include_assets() }}
 </head>
 <body class="bg-gray-100 text-gray-900">
+    {{ ev_cookie_render() }}
     <header class="bg-brand shadow">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <h1 class="text-xl font-bold sr-only">{{ project_title }}</h1>
