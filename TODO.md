@@ -1,7 +1,6 @@
 TODO
 ====
 
- * show Service images
  * send Contact message
  * manage Contact message admin
  * add CTA button related with WhatsApp
