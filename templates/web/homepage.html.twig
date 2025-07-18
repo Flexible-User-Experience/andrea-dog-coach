@@ -27,15 +27,7 @@
         <div class="container mx-auto px-4 max-w-xl">
             <h2 class="text-2xl font-bold mb-6">{{ 'Contact Me' | trans }}</h2>
             <div class="flex gap-6 my-6">
-                <a href="{{ facebook_url }}" target="_blank" aria-label="Facebook" class="text-brand hover:opacity-75">
-                    {{ ux_icon('streamline:facebook-1', {'class': 'w-12 h-12'}) }}
-                </a>
-                <a href="{{ instagram_url }}" target="_blank" aria-label="Instagram" class="text-brand hover:opacity-75">
-                    {{ ux_icon('streamline:instagram', {'class': 'w-12 h-12'}) }}
-                </a>
-                <a href="{{ youtube_url }}" target="_blank" aria-label="YouTube" class="text-brand hover:opacity-75">
-                    {{ ux_icon('streamline-flex:youtube', {'class': 'w-12 h-12'}) }}
-                </a>
+                {% include '@App/web/partials/social_networks_bar_partial.html.twig' %}
             </div>
             <p class="mb-4 text-gray-700">{{ 'Contact Me Description' | trans }}</p>
             {% include '@App/web/partials/contact_us_partial.html.twig' %}
