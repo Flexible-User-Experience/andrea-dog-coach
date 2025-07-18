@@ -3,7 +3,6 @@ TODO
 
  * send Contact message
  * manage Contact message admin
- * add CTA button related with WhatsApp
  * add ReCaptcha
  * add Google Analytics
  * add Cookie Consent management

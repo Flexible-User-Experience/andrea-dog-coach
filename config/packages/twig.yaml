@@ -15,6 +15,7 @@ twig:
         project_title: '%project_title%'
         admin_tag_version: '%admin_tag_version%'
         customer_name: '%env(string:CUSTOMER_NAME)%'
+        customer_mobile_phone: '%env(string:CUSTOMER_MOBILE_PHONE)%'
         customer_url: '%env(string:CUSTOMER_URL)%'
         facebook_url: '%env(string:FACEBOOK_URL)%'
         instagram_url: '%env(string:INSTAGRAM_URL)%'
