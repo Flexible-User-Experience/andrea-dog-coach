@@ -34,7 +34,7 @@ final class MainController extends AbstractController
                 'frontend.flash.on_contact_message_submit_success'
             );
 
-            return $this->redirectToRoute('app_web_homepage');
+            return $this->redirectToRoute(RoutesEnum::app_web_homepage_route);
         }
 
         return $this->render(
@@ -86,7 +86,7 @@ final class MainController extends AbstractController
                 'frontend.flash.on_contact_message_submit_success'
             );
 
-            return $this->redirectToRoute('app_web_homepage');
+            return $this->redirectToRoute(RoutesEnum::app_web_contact_us_route);
         }
 
         return $this->render('web/contact_us.html.twig', [

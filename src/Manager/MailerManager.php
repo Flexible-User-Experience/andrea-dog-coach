@@ -36,9 +36,9 @@ final readonly class MailerManager
      */
     public function sendNewContactMessageFromNotificationToManager(ContactMessage $contactMessage): void
     {
-        $email = (new NotificationEmail())
-            ->from(new Address($this->parameterBag->get('mailer_destination'), $this->parameterBag->get('project_web_title')))
-            ->to($this->parameterBag->get('delivery_admin_address'))
+        $email = new NotificationEmail()
+            ->from(new Address($this->parameterBag->get('customer_delivery_address'), $this->parameterBag->get('project_title')))
+            ->to($this->parameterBag->get('customer_delivery_address'))
             ->importance(NotificationEmail::IMPORTANCE_HIGH)
             ->subject($this->translator->trans('Message contact web form'))
             ->action(
@@ -68,10 +68,10 @@ final readonly class MailerManager
      */
     public function sendContactMessageReplyToPotentialCustomerNotification(ContactMessage $contactMessage): void
     {
-        $email = (new TemplatedEmail())
-            ->from(new Address($this->parameterBag->get('mailer_destination'), $this->parameterBag->get('project_web_title')))
+        $email = new TemplatedEmail()
+            ->from(new Address($this->parameterBag->get('mailer_destination'), $this->parameterBag->get('project_title')))
             ->to(new Address($contactMessage->getEmail(), $contactMessage->getName()))
-            ->subject($this->translator->trans('Contact message answer').' '.$this->parameterBag->get('project_web_title'))
+            ->subject($this->translator->trans('Contact message answer').' '.$this->parameterBag->get('project_title'))
             ->htmlTemplate('@App/mail/contact_message_reply_notification_to_potential_customer.html.twig')
             ->context([
                 'contact' => $contactMessage,

@@ -5,6 +5,7 @@ parameters:
     default_locale: 'ca'
     short_project_title: 'ADC'
     project_title: 'Andrea Dog Coach'
+    customer_delivery_address: '%env(string:CUSTOMER_DELIVERY_ADDRESS)%'
     admin_tag_version: '100000'
     admin_password: '%env(string:ADMIN_PASSWORD)%'
     delivery_dev_address: '%env(string:DEV_DELIVERY_ADDRESS)%'
