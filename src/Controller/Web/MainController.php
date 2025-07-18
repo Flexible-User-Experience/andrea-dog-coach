@@ -27,14 +27,14 @@ final class MainController extends AbstractController
         $form = $this->createForm(ContactMessageFormType::class, $contactMessage);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $cmr->add($contactMessage, true);
-            $mm->sendNewContactMessageFromNotificationToManager($contactMessage);
+            $cmr->add(entity: $contactMessage, flush: true);
+            $mm->sendNewContactMessageNotificationToManager($contactMessage);
             $this->addFlash(
                 'success',
                 'frontend.flash.on_contact_message_submit_success'
             );
 
-            return $this->redirectToRoute(RoutesEnum::app_web_homepage_route);
+            return $this->redirectToRoute(RoutesEnum::app_web_homepage_route, [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render(
@@ -79,14 +79,14 @@ final class MainController extends AbstractController
         $form = $this->createForm(ContactMessageFormType::class, $contactMessage);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $cmr->add($contactMessage, true);
-            $mm->sendNewContactMessageFromNotificationToManager($contactMessage);
+            $cmr->add(entity: $contactMessage, flush: true);
+            $mm->sendNewContactMessageNotificationToManager($contactMessage);
             $this->addFlash(
                 'success',
                 'frontend.flash.on_contact_message_submit_success'
             );
 
-            return $this->redirectToRoute(RoutesEnum::app_web_contact_us_route);
+            return $this->redirectToRoute(RoutesEnum::app_web_contact_us_route, [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('web/contact_us.html.twig', [

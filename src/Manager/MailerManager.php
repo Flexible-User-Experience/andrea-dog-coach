@@ -34,7 +34,7 @@ final readonly class MailerManager
      * @throws RuntimeError
      * @throws LoaderError
      */
-    public function sendNewContactMessageFromNotificationToManager(ContactMessage $contactMessage): void
+    public function sendNewContactMessageNotificationToManager(ContactMessage $contactMessage): void
     {
         $email = new NotificationEmail()
             ->from(new Address($this->parameterBag->get('customer_delivery_address'), $this->parameterBag->get('project_title')))
