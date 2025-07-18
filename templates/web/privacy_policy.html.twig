@@ -14,7 +14,7 @@
             <h4>REGISTRE DE FITXERS I FORMULARIS</h4>
             <p>{{ project_title | upper }}, obté la informació mínima i indispensable mitjançant formularis, qüestionaris electrònics o, si s'escau, impresos descarregables.</p>
             <h4>RESPONSABLE DEL TRACTAMENT</h4>
-            <p>{{ project_title | upper }}, amb domicili al {{ customer_address }} - 43870 {{ customer_city }} (Tarragona), de la qual, {{ customer_name }}, amb DNI {{ customer_tin }} actua com a responsable del tractament de dades.</p>
+            <p>{{ project_title | upper }}, amb domicili al {{ customer_address }} - {{ customer_zip }} {{ customer_city }} ({{ customer_province }}), de la qual, {{ customer_name }}, amb DNI {{ customer_tin }} actua com a responsable del tractament de dades.</p>
             <h4>FINALITAT DEL TRACTAMENT</h4>
             <p>Les dades personals recaptades s'utilitzaran per a realitzar les gestions informatives, comercials i administratives necessàries amb els Usuaris. Així mateix, les dades podran ser utilitzades per enviar informació, per qualsevol mitjà, sobre els aspectes anteriors, i en relació a altres serveis o productes de {{ project_title | upper }}.</p>
             <p>{{ project_title | upper }}, incorpora les seves dades a una llista de correu electrònic de Newsletter per enviar informació rellevant i d'interès per als Usuaris.</p>
@@ -30,8 +30,8 @@
                     <ul class="list-unstyled" style="margin-left:20px">
                         <li>{{ project_title }}</li>
                         <li>{{ customer_address }}</li>
-                        <li>43870 {{ customer_city }}</li>
-                        <li>(Tarragona)</li>
+                        <li>{{ customer_zip }} {{ customer_city }}</li>
+                        <li>({{ customer_province }})</li>
                     </ul>
                 </li>
                 <li>
@@ -80,7 +80,7 @@
             <hr class="hr custom-hr">
             <h3>3. AVÍS LEGAL</h3>
             <h4>Responsabilitat del web</h4>
-            <p>{{ project_title }}, és la marca comercial de {{ project_title | upper }}, amb domicili al {{ customer_address }}, 43870 {{ customer_city }} - (Tarragona), de la qual, {{ customer_city }}, amb DNI {{ customer_tin }} actua com a titular, dinamitzadora i gestora de continguts del web:
+            <p>{{ project_title }}, és la marca comercial de {{ customer_name | upper }}, amb domicili al {{ customer_address }}, {{ customer_zip }} {{ customer_city }} - ({{ customer_province }}), de la qual, {{ customer_city }}, amb DNI {{ customer_tin }} actua com a titular, dinamitzadora i gestora de continguts del web:
                 {{ project_url_base }}</p>
             <h4>Concepte d'usuari</h4>
             <p>La utilització del web atribueix la condició d'usuari, i implica l'acceptació plena i sense reserves de totes i cadascuna de les disposicions incloses en aquest Avís Legal en la versió publicada per {{ project_title | upper }} en el mateix moment que l'usuari accedeixi a la Web. {{ project_title | upper }} informarà als usuaris de qualsevol canvi en aquest Avís legal.</p>
