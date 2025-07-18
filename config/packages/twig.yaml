@@ -16,6 +16,9 @@ twig:
         admin_tag_version: '%admin_tag_version%'
         customer_name: '%env(string:CUSTOMER_NAME)%'
         customer_url: '%env(string:CUSTOMER_URL)%'
+        facebook_url: '%env(string:FACEBOOK_URL)%'
+        instagram_url: '%env(string:INSTAGRAM_URL)%'
+        youtube_url: '%env(string:YOUTUBE_URL)%'
         developer_name: '%env(string:DEVELOPER_NAME)%'
         developer_url: '%env(string:DEVELOPER_URL)%'
 
