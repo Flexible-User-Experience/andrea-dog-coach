@@ -1,7 +1,6 @@
 TODO
 ====
 
- * send Contact message
  * manage Contact message admin
  * add ReCaptcha
  * add Google Analytics

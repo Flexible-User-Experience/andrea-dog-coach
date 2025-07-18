@@ -75,10 +75,6 @@ final class MainController extends AbstractController
     )]
     public function contactUs(Request $request, ContactMessageRepository $cmr, MailerManager $mm): Response
     {
-        $this->addFlash(
-            'info',
-            'Your Message Has Been Sent Successfully'
-        );
         $contactMessage = new ContactMessage();
         $form = $this->createForm(ContactMessageFormType::class, $contactMessage);
         $form->handleRequest($request);
