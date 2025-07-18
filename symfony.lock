@@ -35,6 +35,9 @@
             "migrations/.gitignore"
         ]
     },
+    "eveltic/cookie-bundle": {
+        "version": "v0.5"
+    },
     "hautelook/alice-bundle": {
         "version": "2.15",
         "recipe": {
