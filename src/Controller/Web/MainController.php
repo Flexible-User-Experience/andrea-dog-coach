@@ -30,8 +30,8 @@ final class MainController extends AbstractController
             $cmr->add(entity: $contactMessage, flush: true);
             $mm->sendNewContactMessageNotificationToManager($contactMessage);
             $this->addFlash(
-                'success',
-                'frontend.flash.on_contact_message_submit_success'
+                'info',
+                'Your Message Has Been Sent Successfully'
             );
 
             return $this->redirectToRoute(RoutesEnum::app_web_homepage_route, [], Response::HTTP_SEE_OTHER);
@@ -75,6 +75,10 @@ final class MainController extends AbstractController
     )]
     public function contactUs(Request $request, ContactMessageRepository $cmr, MailerManager $mm): Response
     {
+        $this->addFlash(
+            'info',
+            'Your Message Has Been Sent Successfully'
+        );
         $contactMessage = new ContactMessage();
         $form = $this->createForm(ContactMessageFormType::class, $contactMessage);
         $form->handleRequest($request);
@@ -82,8 +86,8 @@ final class MainController extends AbstractController
             $cmr->add(entity: $contactMessage, flush: true);
             $mm->sendNewContactMessageNotificationToManager($contactMessage);
             $this->addFlash(
-                'success',
-                'frontend.flash.on_contact_message_submit_success'
+                'info',
+                'Your Message Has Been Sent Successfully'
             );
 
             return $this->redirectToRoute(RoutesEnum::app_web_contact_us_route, [], Response::HTTP_SEE_OTHER);
