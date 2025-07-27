@@ -10,6 +10,7 @@ use App\Form\Type\ContactMessageFormType;
 use App\Manager\MailerManager;
 use App\Repository\ContactMessageRepository;
 use App\Repository\ServiceRepository;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -74,15 +75,17 @@ final class MainController extends AbstractController
         name: RoutesEnum::app_web_service_detail_route,
         options: ['sitemap' => true]
     )]
-    public function serviceDetail(ServiceRepository $sr, Service $service): Response
-    {
+    public function serviceDetail(
+        ServiceRepository $sr,
+        #[MapEntity(mapping: ['slug' => 'slug'])] Service $service,
+    ): Response {
         if (!$service->getShowInFrontend()) {
             throw $this->createNotFoundException();
         }
 
         return $this->render('web/service.html.twig', [
             'services' => $sr->getActiveAndShowInFrontendSortedByPosition(),
-            'service' => $service,
+            'current_service' => $service,
         ]);
     }
 

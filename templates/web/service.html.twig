@@ -1,6 +1,6 @@
 {% extends 'web/base.html.twig' %}
 
-{% block title %}{{ 'Services' | trans }} · {{ parent() }}{% endblock %}
+{% block title %}{{ current_service.name }} · {{ parent() }}{% endblock %}
 
 {% block main_body_class %}flex-grow max-w-5xl mx-auto my-8 bg-soft rounded-3xl shadow-md{% endblock %}
 
@@ -9,7 +9,7 @@
         <div class="container mx-auto px-4">
             <h2 class="text-2xl font-bold mb-6">{{ 'Our Services' | trans }}</h2>
             <div class="grid md:grid-cols-2 gap-6">
-                {{ service.name }}
+                {{ current_service.name }}
 {#                {% include '@App/web/partials/services_partial.html.twig' with {'show_descriptions': true} %}#}
             </div>
         </div>
