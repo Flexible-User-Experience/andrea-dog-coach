@@ -25,22 +25,22 @@
                 <div class="relative inline-block text-left">
                     <div class="flex space-x-4 items-center">
                         {% if app.request.locale != constant('App\\Enum\\LocaleEnum::de') %}
-                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'de'})) }}" title="{{ 'Deutsch' | trans }}">
+                            <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params') | merge({'_locale': 'de'})) }}" title="{{ 'Deutsch' | trans }}">
                                 {{ ux_icon('circle-flags:de', {'class': 'w-6 h-6'}) }}
                             </a>
                         {% endif %}
                         {% if app.request.locale != constant('App\\Enum\\LocaleEnum::en') %}
-                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'en'})) }}" title="{{ 'English' | trans }}">
+                            <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params') | merge({'_locale': 'en'})) }}" title="{{ 'English' | trans }}">
                                 {{ ux_icon('circle-flags:lang-en', {'class': 'w-6 h-6'}) }}
                             </a>
                         {% endif %}
                         {% if app.request.locale != constant('App\\Enum\\LocaleEnum::es') %}
-                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'es'})) }}" title="{{ 'Spanish' | trans }}">
+                            <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params') | merge({'_locale': 'es'})) }}" title="{{ 'Spanish' | trans }}">
                                 {{ ux_icon('circle-flags:es-variant', {'class': 'w-6 h-6'}) }}
                             </a>
                         {% endif %}
                         {% if app.request.locale != constant('App\\Enum\\LocaleEnum::ca') %}
-                            <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({'_locale': 'ca'})) }}" title="{{ 'Catalan' | trans }}">
+                            <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params') | merge({'_locale': 'ca'})) }}" title="{{ 'Catalan' | trans }}">
                                 {{ ux_icon('circle-flags:lang-ca', {'class': 'w-6 h-6'}) }}
                             </a>
                         {% endif %}

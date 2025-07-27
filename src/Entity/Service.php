@@ -46,7 +46,7 @@ class Service extends AbstractBase
     #[Assert\NotBlank]
     #[Gedmo\Translatable]
     #[ORM\Column(type: Types::STRING, length: 255)]
-    private string $name;
+    private ?string $name = null;
 
     #[Gedmo\Slug(fields: ['name'])]
     #[ORM\Column(type: Types::STRING, length: 255, unique: true)]

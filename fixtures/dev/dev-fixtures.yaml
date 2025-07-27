@@ -9,18 +9,22 @@ App\Entity\Service:
   service1:
     name: 'Servei d''Educació i Psicologia Canina'
     description: 'Activitats per millorar les habilitats socials dels gossos amb altres gossos i persones.'
+    imageName: 'education_psychology.png'
     position: 1
   service2:
     name: 'Rehabilitació de conducta'
     description: 'Programes personalitzats per entendre i modificar el comportament caní.'
+    imageName: 'behavioral_rehabilitation.png'
     position: 2
   service3:
     name: 'Socialització Canina'
     description: 'Intervencions per corregir conductes problemàtiques de manera respectuosa.'
+    imageName: 'socialization.png'
     position: 3
   service4:
     name: 'Activitat física en grup'
     description: 'Sessions dinàmiques per millorar la forma física dels gossos en un entorn social.'
+    imageName: 'group_activity.png'
     position: 4
 
 App\Entity\Translations\ServiceTranslation:
