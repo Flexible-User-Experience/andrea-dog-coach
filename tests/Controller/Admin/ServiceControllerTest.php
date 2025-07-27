@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ServiceControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function testSuccessful(): void
     {
         $client = ContactMessageControllerTest::getAdminAuthenticatedClient();
         $client->request(Request::METHOD_GET, sprintf('/admin/%s/list', RoutesEnum::app_admin_service_path));

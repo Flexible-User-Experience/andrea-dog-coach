@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ContactMessageControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function testSuccessful(): void
     {
         $client = static::getAdminAuthenticatedClient();
         $client->request(Request::METHOD_GET, sprintf('/admin/%s/list', RoutesEnum::app_admin_contact_message_path));

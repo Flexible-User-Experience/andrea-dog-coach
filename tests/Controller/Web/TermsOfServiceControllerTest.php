@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TermsOfServiceControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function testSuccessful(): void
     {
         $client = static::createClient();
         $client->request(Request::METHOD_GET, RoutesEnum::app_web_privacy_policy_path_ca);
