@@ -58,7 +58,7 @@
                             </a>
                         </li>
                         <li class="px-6">
-                            <a href="{{ path(constant('App\\Enum\\RoutesEnum::app_web_services_route')) }}" class="transition-all duration-300 ease-in-out px-4 py-1 rounded {% if app.current_route == constant('App\\Enum\\RoutesEnum::app_web_services_route') %}bg-brand/40{% else %}hover:bg-brand/30{% endif %}">
+                            <a href="{{ path(constant('App\\Enum\\RoutesEnum::app_web_services_route')) }}" class="transition-all duration-300 ease-in-out px-4 py-1 rounded {% if app.current_route == constant('App\\Enum\\RoutesEnum::app_web_services_route') or app.current_route == constant('App\\Enum\\RoutesEnum::app_web_service_detail_route') %}bg-brand/40{% else %}hover:bg-brand/30{% endif %}">
                                 {{ 'Services' | trans }}
                             </a>
                         </li>
