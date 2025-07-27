@@ -7,6 +7,7 @@ use App\Entity\Traits\ImageFileTrait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\PositionTrait;
 use App\Entity\Traits\ShowInFrontendTrait;
+use App\Entity\Traits\SlugTrait;
 use App\Entity\Traits\TranslationTrait;
 use App\Entity\Translations\ServiceTranslation;
 use App\Manager\AssetsManager;
@@ -29,6 +30,7 @@ class Service extends AbstractBase
     use ImageFileTrait;
     use NameTrait;
     use PositionTrait;
+    use SlugTrait;
     use ShowInFrontendTrait;
     use TranslationTrait;
 
@@ -45,6 +47,10 @@ class Service extends AbstractBase
     #[Gedmo\Translatable]
     #[ORM\Column(type: Types::STRING, length: 255)]
     private string $name;
+
+    #[Gedmo\Slug(fields: ['name'])]
+    #[ORM\Column(type: Types::STRING, length: 255, unique: true)]
+    private string $slug;
 
     #[Gedmo\Translatable]
     #[ORM\Column(type: Types::TEXT, nullable: true)]

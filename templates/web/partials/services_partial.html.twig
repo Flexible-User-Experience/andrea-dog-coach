@@ -1,9 +1,11 @@
 {% for service in services %}
-    <div class="bg-white shadow p-6 rounded-lg">
-        {% if service.imageName is not null %}
-            <img src="{{ vich_uploader_asset(service, 'imageFile') }}" alt="{{ service.name }}" class="w-full rounded mb-4">
-        {% endif %}
-        <h3 class="text-xl font-semibold">{{ service.name }}</h3>
-        {% if show_descriptions %}<p class="text-gray-600">{{ service.description }}</p>{% endif %}
-    </div>
+    <a href="{{ path(constant('App\\Enum\\RoutesEnum::app_web_service_detail_route'), {'slug': service.slug}) }}">
+        <div class="bg-white shadow p-6 rounded-lg">
+            {% if service.imageName is not null %}
+                <img src="{{ vich_uploader_asset(service, 'imageFile') }}" alt="{{ service.name }}" class="w-full rounded mb-4">
+            {% endif %}
+            <h3 class="text-xl font-semibold">{{ service.name }}</h3>
+            {% if show_descriptions %}<p class="text-gray-600">{{ service.description }}</p>{% endif %}
+        </div>
+    </a>
 {% endfor %}

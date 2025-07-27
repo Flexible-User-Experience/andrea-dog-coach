@@ -76,6 +76,10 @@ final class MainController extends AbstractController
     )]
     public function serviceDetail(ServiceRepository $sr, Service $service): Response
     {
+        if (!$service->getShowInFrontend()) {
+            throw $this->createNotFoundException();
+        }
+
         return $this->render('web/service.html.twig', [
             'services' => $sr->getActiveAndShowInFrontendSortedByPosition(),
             'service' => $service,
