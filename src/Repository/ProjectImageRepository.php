@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\ProjectImage;
+use App\Entity\ServiceImage;
 use App\Enum\SortOrderEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
@@ -10,18 +10,18 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<ProjectImage>
+ * @extends ServiceEntityRepository<ServiceImage>
  *
- * @method ProjectImage|null find($id, $lockMode = null, $lockVersion = null)
- * @method ProjectImage|null findOneBy(array $criteria, array $orderBy = null)
- * @method ProjectImage[]    findAll()
- * @method ProjectImage[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ServiceImage|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ServiceImage|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ServiceImage[]    findAll()
+ * @method ServiceImage[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ProjectImageRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ProjectImage::class);
+        parent::__construct($registry, ServiceImage::class);
     }
 
     public function update(bool $flush = false): void
@@ -31,13 +31,13 @@ class ProjectImageRepository extends ServiceEntityRepository
         }
     }
 
-    public function add(ProjectImage $entity, bool $flush = false): void
+    public function add(ServiceImage $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
         $this->update($flush);
     }
 
-    public function remove(ProjectImage $entity, bool $flush = false): void
+    public function remove(ServiceImage $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
         $this->update($flush);

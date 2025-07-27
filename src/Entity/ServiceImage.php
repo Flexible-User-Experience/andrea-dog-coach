@@ -15,15 +15,15 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProjectImageRepository::class)]
 #[Vich\Uploadable]
-class ProjectImage extends AbstractBase
+class ServiceImage extends AbstractBase
 {
     use ImageFileTrait;
     use NameTrait;
     use PositionTrait;
 
     #[ORM\JoinColumn(nullable: false)]
-    #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'images')]
-    private Project $project;
+    #[ORM\ManyToOne(targetEntity: Service::class, inversedBy: 'items')]
+    private Service $service;
 
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::STRING, length: 255)]
@@ -38,14 +38,14 @@ class ProjectImage extends AbstractBase
     #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
-    public function getProject(): Project
+    public function getService(): Service
     {
-        return $this->project;
+        return $this->service;
     }
 
-    public function setProject(Project $project): void
+    public function setService(Service $service): void
     {
-        $this->project = $project;
+        $this->service = $service;
     }
 
     public function __toString(): string
