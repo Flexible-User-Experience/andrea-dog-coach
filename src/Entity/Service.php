@@ -35,7 +35,7 @@ class Service extends AbstractBase
     use TranslationTrait;
 
     #[Assert\Valid]
-    #[ORM\OneToMany(targetEntity: ServiceListItem::class, mappedBy: 'service', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: ServiceImage::class, mappedBy: 'service', cascade: ['persist', 'remove'])]
     #[ORM\OrderBy(['position' => 'ASC'])]
     private ?Collection $items;
 
@@ -71,7 +71,7 @@ class Service extends AbstractBase
         $this->translations = new ArrayCollection();
     }
 
-    public function addItem(ServiceListItem $item): self
+    public function addItem(ServiceImage $item): self
     {
         if (!$this->items->contains($item)) {
             $this->items->add($item);
@@ -81,7 +81,7 @@ class Service extends AbstractBase
         return $this;
     }
 
-    public function removeItem(ServiceListItem $item): self
+    public function removeItem(ServiceImage $item): self
     {
         if ($this->items->contains($item)) {
             $this->items->removeElement($item);
