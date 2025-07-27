@@ -3,6 +3,7 @@
 namespace App\Controller\Web;
 
 use App\Entity\ContactMessage;
+use App\Entity\Service;
 use App\Enum\LocaleEnum;
 use App\Enum\RoutesEnum;
 use App\Form\Type\ContactMessageFormType;
@@ -60,6 +61,24 @@ final class MainController extends AbstractController
     {
         return $this->render('web/services.html.twig', [
             'services' => $sr->getActiveAndShowInFrontendSortedByPosition(),
+        ]);
+    }
+
+    #[Route(
+        path: [
+            LocaleEnum::ca => RoutesEnum::app_web_service_detail_path_ca,
+            LocaleEnum::es => RoutesEnum::app_web_service_detail_path_es,
+            LocaleEnum::en => RoutesEnum::app_web_service_detail_path_en,
+            LocaleEnum::de => RoutesEnum::app_web_service_detail_path_de,
+        ],
+        name: RoutesEnum::app_web_service_detail_route,
+        options: ['sitemap' => true]
+    )]
+    public function serviceDetail(ServiceRepository $sr, Service $service): Response
+    {
+        return $this->render('web/service.html.twig', [
+            'services' => $sr->getActiveAndShowInFrontendSortedByPosition(),
+            'service' => $service,
         ]);
     }
 

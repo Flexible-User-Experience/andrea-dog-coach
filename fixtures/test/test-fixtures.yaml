@@ -11,6 +11,18 @@ App\Entity\Service:
     name: '<name()>'
     imageName: 'lorem-picsum.jpg'
     position: '<current()>'
+  service6:
+    legacyId: 6
+    name: 'Service Six'
+    imageName: 'lorem-picsum.jpg'
+    position: 6
+    showInFrontend: true
+  service7:
+    legacyId: 7
+    name: 'Service Seven'
+    imageName: 'lorem-picsum.jpg'
+    position: 7
+    showInFrontend: false
 
 App\Entity\ServiceListItem:
   servicelistitem{1..5}:
