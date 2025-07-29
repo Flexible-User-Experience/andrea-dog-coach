@@ -105,7 +105,7 @@ final class MainController extends AbstractController
         $form = $this->createForm(ContactMessageFormType::class, $contactMessage);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // TODO until reCaptcha is not enabled $cmr->add(entity: $contactMessage, flush: true);
+            $cmr->add(entity: $contactMessage, flush: true);
             $mm->sendNewContactMessageNotificationToManager($contactMessage);
             $this->addFlash(
                 'info',
