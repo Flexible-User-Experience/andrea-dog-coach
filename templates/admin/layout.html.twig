@@ -1,5 +1,8 @@
 {% extends '@SonataAdmin/standard_layout.html.twig' %}
 
+{# disable turbo #}
+{% block html_attributes %}{{ parent() }} data-turbo="false"{% endblock %}
+
 {# custom logo #}
 {% block logo %}
     <a class="logo" href="{{ path('sonata_admin_dashboard') }}" style="background-color:#7F5330;">
