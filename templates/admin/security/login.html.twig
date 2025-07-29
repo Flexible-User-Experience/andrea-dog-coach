@@ -20,7 +20,7 @@
                 {% block sonata_user_login_error %}
                     {% if error %}
                         <div class="alert alert-danger">
-                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                            {{ error.messageKey | trans(error.messageData, 'security') }}
                         </div>
                     {% endif %}
                 {% endblock %}
@@ -43,7 +43,7 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <input type="hidden" name="_target_path" value="{{ path('sonata_admin_dashboard') }}">
-                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                            <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
                             <button type="submit" class="btn btn-primary btn-block btn-flat">{{ 'Login' | trans }}</button>
                         </div>
                     </div>
@@ -57,3 +57,8 @@
         </div>
     </div>
 {% endblock sonata_wrapper %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
+{% endblock %}
