@@ -105,7 +105,7 @@ final class ContactMessageAdmin extends AbstractBaseAdmin
                 'hasBeenRead',
                 FieldDescriptionInterface::TYPE_BOOLEAN,
                 [
-                    'editable' => true,
+                    'editable' => false,
                     'header_class' => 'text-center',
                     'row_align' => 'center',
                 ]
@@ -114,7 +114,7 @@ final class ContactMessageAdmin extends AbstractBaseAdmin
                 'hasBeenReplied',
                 FieldDescriptionInterface::TYPE_BOOLEAN,
                 [
-                    'editable' => true,
+                    'editable' => false,
                     'header_class' => 'text-center',
                     'row_align' => 'center',
                 ]
@@ -187,6 +187,9 @@ final class ContactMessageAdmin extends AbstractBaseAdmin
                 TextareaType::class,
                 [
                     'required' => true,
+                    'attr' => [
+                        'rows' => 10,
+                    ],
                 ]
             )
             ->end()
