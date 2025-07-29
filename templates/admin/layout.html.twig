@@ -45,3 +45,8 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
+{% endblock %}

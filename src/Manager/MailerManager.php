@@ -69,7 +69,7 @@ final readonly class MailerManager
     public function sendContactMessageReplyToPotentialCustomerNotification(ContactMessage $contactMessage): void
     {
         $email = new TemplatedEmail()
-            ->from(new Address($this->parameterBag->get('mailer_destination'), $this->parameterBag->get('project_title')))
+            ->from(new Address($this->parameterBag->get('customer_delivery_address'), $this->parameterBag->get('project_title')))
             ->to(new Address($contactMessage->getEmail(), $contactMessage->getName()))
             ->subject($this->translator->trans('Contact message answer').' '.$this->parameterBag->get('project_title'))
             ->htmlTemplate('@App/mail/contact_message_reply_notification_to_potential_customer.html.twig')
