@@ -45,7 +45,7 @@
                         </tr>
                         <tr class="sonata-ba-view-container">
                             <th>{{ 'Has Been Read' | trans }}</th>
-                            <td>{{ object.hasBeenRead }}</td>
+                            <td>{% if object.hasBeenRead %}si{% else %}no{% endif %}</td>
                         </tr>
                         </tbody>
                     </table>

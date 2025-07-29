@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Admin;
 
-use App\Entity\Translations\ProjectTranslation;
+use App\Entity\Translations\ServiceTranslation;
 use App\Enum\RoutesEnum;
 use App\Enum\SortOrderEnum;
 use App\Form\Type\GedmoTranslationsType;
@@ -144,6 +144,9 @@ final class ServiceAdmin extends AbstractBaseAdmin
                 TextareaType::class,
                 [
                     'required' => false,
+                    'attr' => [
+                        'rows' => 10,
+                    ],
                 ]
             )
             ->end()
@@ -160,7 +163,7 @@ final class ServiceAdmin extends AbstractBaseAdmin
                 [
                     'label' => false,
                     'required' => false,
-                    'translatable_class' => ProjectTranslation::class,
+                    'translatable_class' => ServiceTranslation::class,
                     'fields' => [
                         'name' => [
                             'required' => true,
@@ -169,6 +172,9 @@ final class ServiceAdmin extends AbstractBaseAdmin
                         'description' => [
                             'required' => false,
                             'field_type' => TextareaType::class,
+                            'attr' => [
+                                'rows' => 10,
+                            ],
                         ],
                     ],
                 ]
