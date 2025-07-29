@@ -11,6 +11,7 @@ parameters:
     delivery_dev_address: '%env(string:DEV_DELIVERY_ADDRESS)%'
     locale_i18n: [ 'es', 'en', 'de' ]
     locale_i18n_full: [ 'ca', 'es', 'en', 'de' ]
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
 
 services:
     _defaults:
