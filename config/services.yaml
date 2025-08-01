@@ -40,6 +40,12 @@ services:
             - '@Doctrine\Common\Persistence\ManagerRegistry'
         calls:
             - setGedmoTranslatableListener: [ '@stof_doctrine_extensions.listener.translatable' ]
+    App\Event\Subscriber\SitemapEventSubscriber:
+        arguments:
+            - '@router'
+            - '@App\Repository\ServiceRepository'
+        tags:
+            - { name: 'kernel.event_subscriber', priority: 100 }
     # Forms
     App\Form\Type\GedmoTranslationsType:
         arguments:
