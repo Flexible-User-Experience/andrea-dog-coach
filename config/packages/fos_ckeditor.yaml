@@ -22,7 +22,7 @@ fos_ck_editor:
         app_custom_half_height_config:
             height: '200px'
             toolbar:
-                - [ 'Bold', 'Italic', 'Underline', 'Strikethrough', 'Subscript', 'Superscript', '-', 'BulletedList', 'NumberedList', '-',  'Indent', 'Outdent', '-', 'Link', 'Unlink' ]
+                - [ 'Bold', 'Italic', 'Underline', 'Strikethrough', '-', 'BulletedList', 'NumberedList', '-', 'Link', 'Unlink' ]
             versionCheck: false
             autoParagraph: false
     plugins:

@@ -16,7 +16,6 @@ use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
@@ -172,7 +171,7 @@ final class ServiceAdmin extends AbstractBaseAdmin
                         ],
                         'description' => [
                             'required' => false,
-                            'field_type' => TextareaType::class,
+                            'field_type' => CKEditorType::class,
                             'attr' => [
                                 'rows' => 10,
                             ],
