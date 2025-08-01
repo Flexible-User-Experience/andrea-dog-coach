@@ -12,7 +12,6 @@
         "doctrine/doctrine-bundle": "^2.15",
         "doctrine/doctrine-migrations-bundle": "^3.4",
         "doctrine/orm": "^3.5",
-        "ehyiah/ux-quill": "^3.0",
         "eveltic/cookie-bundle": "^0.5.0",
         "excelwebzone/recaptcha-bundle": "^1.5",
         "hautelook/alice-bundle": "^2.15",
