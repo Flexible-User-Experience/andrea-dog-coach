@@ -11,7 +11,7 @@
             {% if current_service.imageName is not null %}
                 <img src="{{ vich_uploader_asset(current_service, 'imageFile') }}" alt="{{ current_service.name }}" class="w-full rounded mb-4">
             {% endif %}
-            <p class="text-gray-600">{{ current_service.description }}</p>
+            <p class="text-gray-600">{{ current_service.description | raw }}</p>
         </div>
     </section>
 {% endblock %}
