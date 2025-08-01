@@ -8,6 +8,7 @@ use App\Entity\Translations\ServiceTranslation;
 use App\Enum\RoutesEnum;
 use App\Enum\SortOrderEnum;
 use App\Form\Type\GedmoTranslationsType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -141,12 +142,11 @@ final class ServiceAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'description',
-                TextareaType::class,
+                CKEditorType::class,
                 [
                     'required' => false,
                     'attr' => [
-                        'data-controller' => 'easymde',
-                        'data-easymde-target' => 'textarea',
+                        'rows' => 10,
                     ],
                 ]
             )

@@ -14,6 +14,7 @@
         "doctrine/orm": "^3.5",
         "eveltic/cookie-bundle": "^0.5.0",
         "excelwebzone/recaptcha-bundle": "^1.5",
+        "friendsofsymfony/ckeditor-bundle": "^2.6",
         "hautelook/alice-bundle": "^2.15",
         "league/commonmark": "^2.7",
         "league/html-to-markdown": "^5.1",
@@ -96,6 +97,7 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
+            "ckeditor:install --tag=4.22.1 --clear=drop": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "importmap:install": "symfony-cmd",
             "tailwind:build": "symfony-cmd"
