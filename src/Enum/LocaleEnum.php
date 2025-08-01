@@ -9,4 +9,14 @@ final readonly class LocaleEnum
     public const string es = 'es';
     public const string en = 'en';
     public const string de = 'de';
+
+    public static function getLocalesArray(): array
+    {
+        return [
+            self::ca,
+            self::es,
+            self::en,
+            self::de,
+        ];
+    }
 }

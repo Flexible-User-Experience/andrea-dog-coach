@@ -27,5 +27,5 @@ fos_ck_editor:
             autoParagraph: false
     plugins:
         justify:
-            path:     '/build/ckeditor/plugins/justify/'
+            path: '/build/ckeditor/plugins/justify/'
             filename: 'plugin.js'
