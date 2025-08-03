@@ -15,7 +15,7 @@
 </head>
 <body class="bg-gray-100 text-gray-900">
     {{ ev_cookie_render() }}
-    {% if google_analytics_enabled %}
+    {% if google_analytics_enabled and ev_cookie_is_category_accepted('analytics') %}
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics_id }}"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
