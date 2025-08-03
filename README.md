@@ -16,15 +16,9 @@ A fresh new Symfony 7.3 webapp project to manage Andrea Dog Coach enterprise.
 ```bash
 $ git clone git@github.com:Flexible-User-Experience/andrea-dog-coach.git
 $ cd andrea-dog-coach
-$ cp env.dist .env
-$ nano .env
 $ composer install
 $ php bin/console doctrine:database:create --env=prod
-$ php bin/console doctrine:migrations:migrate --env=prod
-$ php bin/console messenger:consume async
 ```
-
-Remember to edit `.env` config file according to your system environment needs.
 
 #### Testing suite commands
 
@@ -32,10 +26,6 @@ Remember to edit `.env` config file according to your system environment needs.
 $ ./scripts/developer-tools/test-database-reset.sh
 $ ./scripts/developer-tools/run-test.sh
 ```
-
-#### Developer important notes
-
-* Remember to properly configure Supervisor message queue consumers https://symfony.com/doc/current/messenger.html#messenger-supervisor
 
 #### Code Style notes
 
