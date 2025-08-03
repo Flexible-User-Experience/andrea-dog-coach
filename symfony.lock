@@ -35,6 +35,9 @@
             "migrations/.gitignore"
         ]
     },
+    "ehyiah/ux-quill": {
+        "version": "3.0.1"
+    },
     "eveltic/cookie-bundle": {
         "version": "v0.5"
     },
