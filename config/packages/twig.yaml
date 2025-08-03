@@ -10,8 +10,8 @@ twig:
         - '@App/form_templates/adapted_a2lix_translation_form.html.twig'
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
     globals:
-        google_tag_manager_enabled: false
-        #google_tag_manager_api_key: '%env(string:GOOGLE_TAG_MANAGER_ACCOUNT)%'
+        google_analytics_enabled: false
+        google_analytics_id: '%env(string:GOOGLE_ANALYTICS_ID)%'
         short_project_title: '%short_project_title%'
         project_title: '%project_title%'
         project_url_base: '%env(string:PROJECT_URL_BASE)%'
@@ -34,3 +34,8 @@ twig:
 when@test:
     twig:
         strict_variables: true
+
+when@prod:
+    twig:
+        globals:
+            google_analytics_enabled: true
