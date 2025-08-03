@@ -12,7 +12,7 @@
         "doctrine/doctrine-bundle": "^2.15",
         "doctrine/doctrine-migrations-bundle": "^3.4",
         "doctrine/orm": "^3.5",
-        "eveltic/cookie-bundle": "^0.5.0",
+        "eveltic/cookie-bundle": "^0.5",
         "excelwebzone/recaptcha-bundle": "^1.5",
         "friendsofsymfony/ckeditor-bundle": "^2.6",
         "hautelook/alice-bundle": "^2.15",
@@ -20,8 +20,8 @@
         "league/html-to-markdown": "^5.1",
         "liip/imagine-bundle": "^2.13",
         "phpdocumentor/reflection-docblock": "^5.6",
-        "phpstan/phpdoc-parser": "^2.1",
-        "presta/sitemap-bundle": "^4.1",
+        "phpstan/phpdoc-parser": "^2.2",
+        "presta/sitemap-bundle": "^4.2",
         "sonata-project/admin-bundle": "^4.37",
         "sonata-project/doctrine-orm-admin-bundle": "^4.18",
         "stof/doctrine-extensions-bundle": "^1.14",
@@ -119,7 +119,7 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^12.2",
+        "phpunit/phpunit": "^12.3",
         "roave/security-advisories": "dev-latest",
         "symfony/browser-kit": "7.3.*",
         "symfony/css-selector": "7.3.*",
