@@ -3,11 +3,10 @@
 namespace App\Entity\Traits;
 
 use App\Entity\AbstractBase;
-use DateTimeInterface;
 
 trait EndDateTrait
 {
-    public function getEndDate(): ?DateTimeInterface
+    public function getEndDate(): ?\DateTimeInterface
     {
         return $this->endDate;
     }
@@ -17,7 +16,7 @@ trait EndDateTrait
         return AbstractBase::convertDateAsString($this->getEndDate());
     }
 
-    public function setEndDate(?DateTimeInterface $endDate): self
+    public function setEndDate(?\DateTimeInterface $endDate): self
     {
         $this->endDate = $endDate;
 
