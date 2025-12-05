@@ -1,7 +1,7 @@
 Andrea Dog Coach webapp v1.0
 ============================
 
-A fresh new Symfony 7.3 webapp project to manage Andrea Dog Coach enterprise.
+A fresh new Symfony 7.4 LTS webapp project to manage Andrea Dog Coach enterprise.
 
 ---
 
