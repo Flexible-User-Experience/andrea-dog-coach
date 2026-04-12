@@ -1,4 +1,4 @@
-FROM php:8.4.18-fpm AS base
+FROM php:8.4-fpm AS base
 
 WORKDIR /var/www/andrea-dog-coach/
 
@@ -12,42 +12,44 @@ ENV FPM_PM_MAX_CHILDREN="10" \
 
 RUN rm /etc/apt/preferences.d/no-debian-php
 
-RUN apt-get update																				&&	\
-    apt-get -y install --no-install-recommends								\
-    acl 																											\
-    curl 																											\
-    git 																											\
-    wget 																											\
-    zip 																											\
-    unzip 																										\
-    libicu-dev 																						    \
-    libonig-dev 																							\
-    libpng-dev 																								\
-    libzip-dev																								\
-    libpq-dev 																								\
-    libxslt-dev 																							\
-    libxml2-dev 																							\
-    libssl-dev 																								\
-    libgmp-dev 																								\
-    libcurl4-openssl-dev 																			\
-    zlib1g-dev 																						   	\
-    libssh-dev 																								;
+RUN apt-get update && \
+    apt-get -y install --no-install-recommends \
+    acl \
+    curl \
+    git \
+    wget \
+    zip \
+    unzip \
+    libicu-dev \
+    libonig-dev \
+    libpng-dev \
+    libwebp-dev \
+    libzip-dev \
+    libpq-dev \
+    libxslt-dev \
+    libxml2-dev \
+    libssl-dev \
+    libgmp-dev \
+    libcurl4-openssl-dev \
+    zlib1g-dev \
+    libssh-dev
 
-RUN docker-php-ext-configure zip													&&	\
-    docker-php-ext-install -j$(nproc)													\
-    bcmath 																										\
-    curl 																											\
-    xml 																											\
-    mbstring 																									\
-    zip 																											\
-    pdo 																											\
-    pdo_mysql 																								\
-    intl 																											\
-    gd 																												\
-    sockets 																									\
-    gmp 																											\
-    xsl 																											\
-    pcntl																											;
+RUN docker-php-ext-configure zip && \
+    docker-php-ext-configure gd --with-webp && \
+    docker-php-ext-install -j$(nproc) \
+    bcmath \
+    curl \
+    xml \
+    mbstring \
+    zip \
+    pdo \
+    pdo_mysql \
+    intl \
+    gd \
+    sockets \
+    gmp \
+    xsl \
+    pcntl
 
 RUN pecl install																							\
     	apcu-5.1.28																					&&	\
@@ -74,7 +76,7 @@ RUN mkdir -p /var/www/andrea-dog-coach/var/cache /var/www/andrea-dog-coach/var/l
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 COPY .docker/php/php.ini-development "$PHP_INI_DIR/conf.d/90-custom.ini"
 COPY .docker/php/opcache.ini "$PHP_INI_DIR/conf.d/docker-php-ext-opcache.ini"
-COPY .docker/php/xdebug-disabled.ini "$PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini"
+COPY .docker/php/xdebug-enabled.ini "$PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini"
 
 RUN wget https://github.com/maglnet/ComposerRequireChecker/releases/download/4.19.0/composer-require-checker.phar && \
     chmod +x composer-require-checker.phar 																		                                    && \
