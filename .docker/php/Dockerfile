@@ -12,62 +12,62 @@ ENV FPM_PM_MAX_CHILDREN="10" \
 
 RUN rm /etc/apt/preferences.d/no-debian-php
 
-RUN apt-get update																								&&	\
-    apt-get -y install --no-install-recommends																		\
+RUN apt-get update																				&&	\
+    apt-get -y install --no-install-recommends								\
     acl 																											\
     curl 																											\
     git 																											\
     wget 																											\
     zip 																											\
-    unzip 																											\
-    libicu-dev 																									    \
-    libonig-dev 																									\
-    libpng-dev 																										\
-    libzip-dev																										\
-    libpq-dev 																										\
-    libxslt-dev 																									\
-    libxml2-dev 																									\
-    libssl-dev 																										\
-    libgmp-dev 																										\
-    libcurl4-openssl-dev 																							\
-    zlib1g-dev 																										\
-    libssh-dev 																										;
+    unzip 																										\
+    libicu-dev 																						    \
+    libonig-dev 																							\
+    libpng-dev 																								\
+    libzip-dev																								\
+    libpq-dev 																								\
+    libxslt-dev 																							\
+    libxml2-dev 																							\
+    libssl-dev 																								\
+    libgmp-dev 																								\
+    libcurl4-openssl-dev 																			\
+    zlib1g-dev 																						   	\
+    libssh-dev 																								;
 
-RUN docker-php-ext-configure zip																				&&	\
-    docker-php-ext-install -j$(nproc)																				\
-    bcmath 																											\
+RUN docker-php-ext-configure zip													&&	\
+    docker-php-ext-install -j$(nproc)													\
+    bcmath 																										\
     curl 																											\
     xml 																											\
-    mbstring 																										\
+    mbstring 																									\
     zip 																											\
     pdo 																											\
-    pdo_mysql 																										\
+    pdo_mysql 																								\
     intl 																											\
     gd 																												\
-    sockets 																										\
+    sockets 																									\
     gmp 																											\
     xsl 																											\
     pcntl																											;
 
-RUN pecl install																									\
-    	apcu-5.1.28																								&&	\
-    pecl clear-cache																							&&	\
-    docker-php-ext-enable																							\
+RUN pecl install																							\
+    	apcu-5.1.28																					&&	\
+    pecl clear-cache																			&&	\
+    docker-php-ext-enable																			\
     	apcu																										\
-    	opcache																										;
+    	opcache																									;
 
 COPY --from=composer/composer:2.9.5-bin /composer /usr/local/bin/composer
 
 FROM base AS development
 
-RUN pecl install pcov-1.0.12																					&&	\
-    docker-php-ext-enable pcov																						;
+RUN pecl install pcov-1.0.12															&&	\
+    docker-php-ext-enable pcov																;
 
-RUN pecl install xdebug-3.5.0																					&&	\
-    docker-php-ext-enable xdebug																					;
+RUN pecl install xdebug-3.5.0															&&	\
+    docker-php-ext-enable xdebug															;
 
 
-RUN mkdir -p /var/www/andrea-dog-coach/var/cache /var/www/andrea-dog-coach/var/log 							          &&	\
+RUN mkdir -p /var/www/andrea-dog-coach/var/cache /var/www/andrea-dog-coach/var/log 					          &&	\
     setfacl -R -m u:www-data:rwX -m u:"$(whoami)":rwX /var/www/andrea-dog-coach/var							      && 	\
 	setfacl -dR -m u:www-data:rwX -m u:"$(whoami)":rwX /var/www/andrea-dog-coach/var								        ;
 
@@ -77,16 +77,16 @@ COPY .docker/php/opcache.ini "$PHP_INI_DIR/conf.d/docker-php-ext-opcache.ini"
 COPY .docker/php/xdebug-disabled.ini "$PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini"
 
 RUN wget https://github.com/maglnet/ComposerRequireChecker/releases/download/4.19.0/composer-require-checker.phar && \
-    chmod +x composer-require-checker.phar 																		  && \
-    mv composer-require-checker.phar /usr/local/bin/composer-require-checker										  ;
+    chmod +x composer-require-checker.phar 																		                                    && \
+    mv composer-require-checker.phar /usr/local/bin/composer-require-checker										                     ;
 
-RUN wget https://github.com/composer-unused/composer-unused/releases/download/0.9.5/composer-unused.phar 		&& 	\
-    chmod +x composer-unused.phar 																				&& 	\
-    mv composer-unused.phar /usr/local/bin/composer-unused															;
+RUN wget https://github.com/composer-unused/composer-unused/releases/download/0.9.5/composer-unused.phar 		      && \
+    chmod +x composer-unused.phar 																				                                        && \
+    mv composer-unused.phar /usr/local/bin/composer-unused															                             ;
 
-RUN wget https://github.com/overtrue/phplint/releases/download/9.7.1/phplint.phar 		                        && 	\
-    chmod +x phplint.phar 																				        && 	\
-    mv phplint.phar /usr/local/bin/phplint															                ;
+RUN wget https://github.com/overtrue/phplint/releases/download/9.7.1/phplint.phar 		                            && \
+    chmod +x phplint.phar 																				                                                && \
+    mv phplint.phar /usr/local/bin/phplint															                                             ;
 
 
 FROM base AS prod

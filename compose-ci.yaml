@@ -38,27 +38,6 @@ services:
         andrea-dog-coach-mysql:
             condition: service_healthy
 
-  andrea-dog-coach-mysql:
-    image: mysql:8.0.44
-    container_name: andrea-dog-coach-mysql
-    volumes:
-      - ./.docker/data/mysql:/var/lib/mysql:cached
-    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
-    ports:
-      - "4306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: andrea_dog_coach_db
-      MYSQL_USER: andrea_dog_coach_user
-      MYSQL_PASSWORD: andrea_dog_coach_password
-    healthcheck:
-        test: "mysql $$MYSQL_DATABASE -u$$MYSQL_USER -p$$MYSQL_PASSWORD -e 'SELECT 1;'"
-        interval: 20s
-        timeout: 10s
-        retries: 5
-    networks:
-      - andrea-dog-coach-net
-
   andrea-dog-coach-mailpit:
     image: axllent/mailpit
     container_name: andrea-dog-coach-mailpit
