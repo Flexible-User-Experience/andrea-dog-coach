@@ -76,7 +76,7 @@ RUN mkdir -p /var/www/andrea-dog-coach/var/cache /var/www/andrea-dog-coach/var/l
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 COPY .docker/php/php.ini-development "$PHP_INI_DIR/conf.d/90-custom.ini"
 COPY .docker/php/opcache.ini "$PHP_INI_DIR/conf.d/docker-php-ext-opcache.ini"
-COPY .docker/php/xdebug-enabled.ini "$PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini"
+COPY .docker/php/xdebug-disabled.ini "$PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini"
 
 RUN wget https://github.com/maglnet/ComposerRequireChecker/releases/download/4.19.0/composer-require-checker.phar && \
     chmod +x composer-require-checker.phar 																		                                    && \
