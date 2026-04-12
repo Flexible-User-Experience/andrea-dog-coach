@@ -1,0 +1,126 @@
+default:
+    image: docker:29.2.1-cli
+    services:
+        - docker:29.2.1-dind
+    before_script:
+        - docker info
+
+stages:
+    - test
+    - deploy
+    - deploy_infra
+    - deploy_rollback
+    - deploy_unlock
+
+variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: "/certs"
+
+test:
+    stage: test
+    when: manual
+    cache:
+        paths:
+            - vendor/
+    script:
+        - COMPOSE_BAKE=true docker compose -f compose-ci.yaml up -d --wait
+        - docker exec andrea-dog-coach-php sh -c "composer install"
+        - docker exec andrea-dog-coach-php sh -c "composer run-script auto-scripts"
+        - docker exec andrea-dog-coach-php sh -c "composer validate --strict"
+        - docker exec andrea-dog-coach-php sh -c "composer-require-checker --ignore-parse-errors"
+        - docker exec andrea-dog-coach-php sh -c "phplint --configuration=.phplint.yml"
+        - docker exec andrea-dog-coach-php sh -c "bin/console lint:container"
+        - docker exec andrea-dog-coach-php sh -c "bin/console lint:yaml config src"
+        - docker exec andrea-dog-coach-php sh -c "bin/console lint:twig templates"
+        - docker exec andrea-dog-coach-php sh -c "bin/console doctrine:schema:validate --skip-sync"
+        - docker exec andrea-dog-coach-php sh -c "bin/console doctrine:database:create --if-not-exists --env=test"
+        - docker exec andrea-dog-coach-php sh -c "bin/console doctrine:schema:create --quiet --env=test"
+        - docker exec andrea-dog-coach-php sh -c "bin/console hautelook:fixtures:load --no-interaction --env=test"
+        - docker exec andrea-dog-coach-php sh -c "vendor/bin/phpunit -c phpunit.dist.xml --testsuite Controller"
+
+deploy:
+    stage: deploy
+    when: manual
+    resource_group: production
+    only:
+        - master
+    image:
+        name: deployphp/deployer:v7
+        entrypoint: [""]
+    before_script:
+        - mkdir -p ~/.ssh
+        - eval $(ssh-agent -s)
+        - cp "$SSH_KNOWN_HOSTS" ~/.ssh/known_hosts
+        - chmod 644 ~/.ssh/known_hosts
+        - chmod 400 "$SSH_PRIVATE_KEY"
+        - ssh-add "$SSH_PRIVATE_KEY"
+    script:
+        - dep deploy -v
+
+deploy_rollback:
+    stage: deploy_rollback
+    when: manual
+    resource_group: production
+    only:
+        - master
+    image:
+        name: deployphp/deployer:v7
+        entrypoint: [""]
+    before_script:
+        - mkdir -p ~/.ssh
+        - eval $(ssh-agent -s)
+        - cp "$SSH_KNOWN_HOSTS" ~/.ssh/known_hosts
+        - chmod 644 ~/.ssh/known_hosts
+        - chmod 400 "$SSH_PRIVATE_KEY"
+        - ssh-add "$SSH_PRIVATE_KEY"
+    script:
+        - dep rollback
+
+deploy_unlock:
+    stage: deploy_unlock
+    when: manual
+    resource_group: production
+    only:
+        - master
+    image:
+        name: deployphp/deployer:v7
+        entrypoint: [""]
+    before_script:
+        - mkdir -p ~/.ssh
+        - eval $(ssh-agent -s)
+        - cp "$SSH_KNOWN_HOSTS" ~/.ssh/known_hosts
+        - chmod 644 ~/.ssh/known_hosts
+        - chmod 400 "$SSH_PRIVATE_KEY"
+        - ssh-add "$SSH_PRIVATE_KEY"
+    script:
+        - dep deploy:unlock
+
+deploy_infra:
+    stage: deploy_infra
+    when: manual
+    resource_group: production
+    only:
+        - master
+    before_script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+        - export CI_REGISTRY_IMAGE_PHP="$CI_REGISTRY_IMAGE"/php
+        - apk add --update curl
+        - echo "APP_ENV=prod" > .env.local
+        - echo "APP_SECRET_PROD=$APP_SECRET_PROD" >> .env.local
+        - echo "BOSS_DNI_PROD=$BOSS_DNI_PROD" >> .env.local
+        - echo "EWZ_RECAPTCHA_SECRET_PROD=$EWZ_RECAPTCHA_SECRET_PROD" >> .env.local
+        - echo "EWZ_RECAPTCHA_SITE_KEY_PROD=$EWZ_RECAPTCHA_SITE_KEY_PROD" >> .env.local
+        - echo "FACEBOOK_API_SECRET_PROD=$FACEBOOK_API_SECRET_PROD" >> .env.local
+        - echo "GOOGLE_CALENDAR_API_KEY_PROD=$GOOGLE_CALENDAR_API_KEY_PROD" >> .env.local
+        - echo "IBAN_BUSINESS_PROD=$IBAN_BUSINESS_PROD" >> .env.local
+        - echo "MAILCHIMP_API_KEY_PROD=$MAILCHIMP_API_KEY_PROD" >> .env.local
+        - echo "MAILER_PASSWORD_PROD=$MAILER_PASSWORD_PROD" >> .env.local
+        - echo "MAILING_MAILER_PASSWORD_PROD=$MAILING_MAILER_PASSWORD_PROD" >> .env.local
+        - echo "MYSQL_PASSWORD_PROD=$MYSQL_PASSWORD_PROD" >> .env.local
+        - cp dockerignore-prod .dockerignore
+    script:
+        - docker pull $CI_REGISTRY_IMAGE_PHP:latest || true
+        - docker build --target prod --file .docker/php/Dockerfile --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from $CI_REGISTRY_IMAGE_PHP:latest --tag $CI_REGISTRY_IMAGE_PHP:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE_PHP:latest .
+        - docker push $CI_REGISTRY_IMAGE_PHP:$CI_COMMIT_SHA
+        - docker push $CI_REGISTRY_IMAGE_PHP:latest
+        - 'curl -X POST --location "https://dockhand.espaikowo.cat/api/git/stacks/4/webhook" -H "Content-Type: application/json" -H "X-Hub-Signature-256: ${DOCKHAND_WEBHOOK_SECRET}"'

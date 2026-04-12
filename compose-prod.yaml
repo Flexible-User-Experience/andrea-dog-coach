@@ -1,0 +1,45 @@
+services:
+  andrea-dog-coach-php:
+    image: registry.gitlab.espaikowo.cat/flux/andrea-dog-coach-4/php:latest
+    platform: linux/amd64
+    container_name: andrea-dog-coach-php
+    working_dir: /opt/docker/flux/andrea-dog-coach/deploy/current
+    restart: always
+    pull_policy: always
+    volumes:
+      - /opt/docker/flux/andrea-dog-coach/deploy:/opt/docker/flux/andrea-dog-coach/deploy
+    ports:
+      - "8010:9000"
+    networks:
+      - andrea-dog-coach-net
+    depends_on:
+        andrea-dog-coach-mysql:
+            condition: service_healthy
+
+  andrea-dog-coach-mysql:
+    image: mysql:8.0.44
+    platform: linux/amd64
+    container_name: andrea-dog-coach-mysql
+    volumes:
+      - /opt/docker/flux/andrea-dog-coach/mysql:/var/lib/mysql:cached
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password --log-timestamps=SYSTEM
+    ports:
+      - "8011:3306"
+    env_file:
+      - .env.dockhand
+    environment:
+      MYSQL_DATABASE: andrea_dog_coach_db
+      MYSQL_USER: andrea_dog_coach_user
+      TZ: Europe/Madrid
+    healthcheck:
+        test: "mysql $$MYSQL_DATABASE -u$$MYSQL_USER -p$$MYSQL_PASSWORD -e 'SELECT 1;'"
+        interval: 5s
+        timeout: 5s
+        retries: 20
+    networks:
+      - andrea-dog-coach-net
+
+networks:
+  andrea-dog-coach-net:
+    name: andrea-dog-coach-net
+    driver: bridge
