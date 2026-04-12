@@ -24,6 +24,8 @@ RUN apt-get update && \
     libonig-dev \
     libpng-dev \
     libwebp-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
     libsqlite3-dev \
     libzip-dev \
     libpq-dev \
@@ -36,7 +38,7 @@ RUN apt-get update && \
     libssh-dev
 
 RUN docker-php-ext-configure zip && \
-    docker-php-ext-configure gd --with-webp && \
+    docker-php-ext-configure gd --with-webp --with-jpeg --with-freetype && \
     docker-php-ext-install -j$(nproc) \
     bcmath \
     curl \
@@ -49,7 +51,6 @@ RUN docker-php-ext-configure zip && \
     intl \
     gd \
     sockets \
-    sqlite3 \
     gmp \
     xsl \
     pcntl
