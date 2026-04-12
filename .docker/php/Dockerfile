@@ -24,6 +24,7 @@ RUN apt-get update && \
     libonig-dev \
     libpng-dev \
     libwebp-dev \
+    libsqlite3-dev \
     libzip-dev \
     libpq-dev \
     libxslt-dev \
@@ -44,9 +45,11 @@ RUN docker-php-ext-configure zip && \
     zip \
     pdo \
     pdo_mysql \
+    pdo_sqlite \
     intl \
     gd \
     sockets \
+    sqlite3 \
     gmp \
     xsl \
     pcntl
