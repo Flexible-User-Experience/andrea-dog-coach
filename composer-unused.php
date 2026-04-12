@@ -8,7 +8,7 @@ use Webmozart\Glob\Glob;
 
 return static function (Configuration $config): Configuration {
     return $config
-        ->setAdditionalFilesFor('flux/box-idiomes', [
+        ->setAdditionalFilesFor('flux/andrea-dog-coach', [
             __FILE__,
             ...Glob::glob(__DIR__ . '/var/cache/dev/Container*/*.php'),
             ...Glob::glob(__DIR__ . '/config/**/*.php'),

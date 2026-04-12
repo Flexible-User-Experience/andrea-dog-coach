@@ -1,92 +1,92 @@
 .DEFAULT_GOAL := help
 
 hosts_file := "/etc/hosts"
-hosts_line := "127.0.0.1 box-idiomes.test"
+hosts_line := "127.0.0.1 andrea-dog-coach.test"
 
 # App
 app/super-admin-password:
-	@docker exec box-idiomes-php sh -c "bin/console app:user:change-password super_admin 12345678"
+	@docker exec andrea-dog-coach-php sh -c "bin/console app:user:change-password super_admin 12345678"
 
 # PHP
 php/lint:
-	@docker exec box-idiomes-php sh -c "phplint --configuration=.phplint.yml"
+	@docker exec andrea-dog-coach-php sh -c "phplint --configuration=.phplint.yml"
 
 # Composer
 composer/install:
-	@docker exec box-idiomes-php sh -c "composer install"
+	@docker exec andrea-dog-coach-php sh -c "composer install"
 
 composer/execute-autoscripts:
-	@docker exec box-idiomes-php sh -c "composer run-script auto-scripts"
+	@docker exec andrea-dog-coach-php sh -c "composer run-script auto-scripts"
 
 composer/validate:
-	@docker exec box-idiomes-php sh -c "composer validate --strict"
+	@docker exec andrea-dog-coach-php sh -c "composer validate --strict"
 
 composer/outdated:
-	@docker exec box-idiomes-php sh -c "composer outdated --minor-only --direct --strict"
+	@docker exec andrea-dog-coach-php sh -c "composer outdated --minor-only --direct --strict"
 
 composer/require-checker:
-	@docker exec box-idiomes-php sh -c "composer-require-checker --ignore-parse-errors"
+	@docker exec andrea-dog-coach-php sh -c "composer-require-checker --ignore-parse-errors"
 
 composer/unused:
-	@docker exec box-idiomes-php sh -c "composer-unused"
+	@docker exec andrea-dog-coach-php sh -c "composer-unused"
 
 # Xdebug
 xdebug/enable:
-	@docker exec box-idiomes-php sh -c "cp .docker/php/xdebug-enabled.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"
-	@docker restart box-idiomes-php
-	@docker restart box-idiomes-nginx
+	@docker exec andrea-dog-coach-php sh -c "cp .docker/php/xdebug-enabled.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"
+	@docker restart andrea-dog-coach-php
+	@docker restart andrea-dog-coach-nginx
 
 xdebug/disable:
-	@docker exec box-idiomes-php sh -c "cp .docker/php/xdebug-disabled.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"
-	@docker restart box-idiomes-php
-	@docker restart box-idiomes-nginx
+	@docker exec andrea-dog-coach-php sh -c "cp .docker/php/xdebug-disabled.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"
+	@docker restart andrea-dog-coach-php
+	@docker restart andrea-dog-coach-nginx
 
 # Symfony
 symfony/cache-clear:
-	@docker exec box-idiomes-php sh -c "bin/console cache:clear"
+	@docker exec andrea-dog-coach-php sh -c "bin/console cache:clear"
 
 symfony-test/cache-clear:
-	@docker exec box-idiomes-php sh -c "bin/console cache:clear --env=test"
+	@docker exec andrea-dog-coach-php sh -c "bin/console cache:clear --env=test"
 
 symfony/lint-container:
-	@docker exec box-idiomes-php sh -c "bin/console lint:container"
+	@docker exec andrea-dog-coach-php sh -c "bin/console lint:container"
 
 symfony/lint-yaml:
-	@docker exec box-idiomes-php sh -c "bin/console lint:yaml config src"
+	@docker exec andrea-dog-coach-php sh -c "bin/console lint:yaml config src"
 
 symfony/lint-twig:
-	@docker exec box-idiomes-php sh -c "bin/console lint:twig templates"
+	@docker exec andrea-dog-coach-php sh -c "bin/console lint:twig templates"
 
 symfony/messenger-consume:
-	@docker exec box-idiomes-php sh -c "bin/console messenger:consume async"
+	@docker exec andrea-dog-coach-php sh -c "bin/console messenger:consume async"
 
 code-style/fix:
-	@docker exec box-idiomes-php sh -c "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --verbose"
+	@docker exec andrea-dog-coach-php sh -c "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --verbose"
 
 code-style/fix-file:
-	@docker exec box-idiomes-php sh -c "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --verbose"
+	@docker exec andrea-dog-coach-php sh -c "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --verbose"
 
 # Doctrine
 doctrine/migration-generate:
-	@docker exec box-idiomes-php sh -c "bin/console doctrine:migrations:diff"
+	@docker exec andrea-dog-coach-php sh -c "bin/console doctrine:migrations:diff"
 
 doctrine/migration-execute:
-	@docker exec box-idiomes-php sh -c "bin/console doctrine:migrations:migrate --no-interaction"
+	@docker exec andrea-dog-coach-php sh -c "bin/console doctrine:migrations:migrate --no-interaction"
 
 doctrine/schema-validate:
-	@docker exec box-idiomes-php sh -c "bin/console doctrine:schema:validate --skip-sync"
+	@docker exec andrea-dog-coach-php sh -c "bin/console doctrine:schema:validate --skip-sync"
 
 doctrine/db-drop:
-	@docker exec box-idiomes-php sh -c "bin/console doctrine:database:drop --force --if-exists"
+	@docker exec andrea-dog-coach-php sh -c "bin/console doctrine:database:drop --force --if-exists"
 
 doctrine/db-create:
-	@docker exec box-idiomes-php sh -c "bin/console doctrine:database:create --if-not-exists"
+	@docker exec andrea-dog-coach-php sh -c "bin/console doctrine:database:create --if-not-exists"
 
 doctrine/db-create-schema:
-	@docker exec box-idiomes-php sh -c "bin/console doctrine:schema:create --quiet"
+	@docker exec andrea-dog-coach-php sh -c "bin/console doctrine:schema:create --quiet"
 
 doctrine/db-fixtures: doctrine/db-recreate
-	@docker exec box-idiomes-php sh -c "bin/console hautelook:fixtures:load --no-interaction"
+	@docker exec andrea-dog-coach-php sh -c "bin/console hautelook:fixtures:load --no-interaction"
 
 doctrine/db-recreate: \
 	doctrine/db-drop \
@@ -95,16 +95,16 @@ doctrine/db-recreate: \
 
 # Doctrine test db
 doctrine-test/db-drop:
-	@docker exec box-idiomes-php sh -c "bin/console doctrine:database:drop --force --if-exists --env=test"
+	@docker exec andrea-dog-coach-php sh -c "bin/console doctrine:database:drop --force --if-exists --env=test"
 
 doctrine-test/db-create:
-	@docker exec box-idiomes-php sh -c "bin/console doctrine:database:create --if-not-exists --env=test"
+	@docker exec andrea-dog-coach-php sh -c "bin/console doctrine:database:create --if-not-exists --env=test"
 
 doctrine-test/db-create-schema:
-	@docker exec box-idiomes-php sh -c "bin/console doctrine:schema:create --quiet --env=test"
+	@docker exec andrea-dog-coach-php sh -c "bin/console doctrine:schema:create --quiet --env=test"
 
 doctrine-test/db-fixtures: doctrine-test/db-recreate
-	@docker exec box-idiomes-php sh -c "bin/console hautelook:fixtures:load --no-interaction --env=test"
+	@docker exec andrea-dog-coach-php sh -c "bin/console hautelook:fixtures:load --no-interaction --env=test"
 
 doctrine-test/db-recreate: \
 	doctrine-test/db-drop \
@@ -113,7 +113,7 @@ doctrine-test/db-recreate: \
 
 # Test
 test/controller: doctrine-test/db-fixtures symfony-test/cache-clear
-	@docker exec box-idiomes-php sh -c "vendor/bin/phpunit -c phpunit.dist.xml --testsuite Controller"
+	@docker exec andrea-dog-coach-php sh -c "vendor/bin/phpunit -c phpunit.dist.xml --testsuite Controller"
 
 test: test/controller
 
@@ -124,7 +124,7 @@ local-server/hosts-line:
 local-server/login-info:
 	$(info **********************************)
 	$(info Local server is running)
-	$(info URL: https://box-idiomes.test)
+	$(info URL: https://andrea-dog-coach.test)
 	$(info User: super_admin@email.com)
 	$(info Password: 12345678)
 	$(info **********************************)
@@ -173,4 +173,4 @@ restart: stop start
 restartd: stop startd
 
 bash:
-	@docker exec -it box-idiomes-php bash
+	@docker exec -it andrea-dog-coach-php bash
