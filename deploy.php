@@ -11,7 +11,7 @@ require 'recipe/symfony.php';
 
 set('application', 'flux/andrea-dog-coach-4');
 set('repository', 'ssh://git@gitlab.espaikowo.cat:2222/flux/andrea-dog-coach-4.git');
-set('branch', 'master');
+set('branch', 'main');
 set('keep_releases', 3);
 
 set('composer_options', '--no-scripts --no-dev --prefer-dist --no-progress --no-interaction --optimize-autoloader');
@@ -74,7 +74,6 @@ task('deploy:env:secrets', static function () use ($dumpSymfonyEnvVar): void {
     $dumpSymfonyEnvVar('MAILCHIMP_API_KEY_PROD');
     $dumpSymfonyEnvVar('MAILER_PASSWORD_PROD');
     $dumpSymfonyEnvVar('MAILING_MAILER_PASSWORD_PROD');
-    $dumpSymfonyEnvVar('MYSQL_PASSWORD_PROD');
 });
 
 desc('Compile assets');

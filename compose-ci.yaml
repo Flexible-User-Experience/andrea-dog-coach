@@ -34,9 +34,6 @@ services:
       - "host.docker.internal:host-gateway"
     networks:
       - andrea-dog-coach-net
-    depends_on:
-        andrea-dog-coach-mysql:
-            condition: service_healthy
 
   andrea-dog-coach-mailpit:
     image: axllent/mailpit

@@ -43,7 +43,7 @@ deploy:
     when: manual
     resource_group: production
     only:
-        - master
+        - main
     image:
         name: deployphp/deployer:v7
         entrypoint: [""]
@@ -62,7 +62,7 @@ deploy_rollback:
     when: manual
     resource_group: production
     only:
-        - master
+        - main
     image:
         name: deployphp/deployer:v7
         entrypoint: [""]
@@ -81,7 +81,7 @@ deploy_unlock:
     when: manual
     resource_group: production
     only:
-        - master
+        - main
     image:
         name: deployphp/deployer:v7
         entrypoint: [""]
@@ -100,7 +100,7 @@ deploy_infra:
     when: manual
     resource_group: production
     only:
-        - master
+        - main
     before_script:
         - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
         - export CI_REGISTRY_IMAGE_PHP="$CI_REGISTRY_IMAGE"/php

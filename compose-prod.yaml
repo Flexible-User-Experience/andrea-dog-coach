@@ -12,9 +12,6 @@ services:
       - "8010:9000"
     networks:
       - andrea-dog-coach-net
-    depends_on:
-        andrea-dog-coach-mysql:
-            condition: service_healthy
 
 networks:
   andrea-dog-coach-net:
