@@ -1,0 +1,22 @@
+services:
+  andrea-dog-coach-php:
+    image: registry.gitlab.espaikowo.cat/flux/andrea-dog-coach-4/php:latest
+    platform: linux/amd64
+    container_name: andrea-dog-coach-php
+    working_dir: /opt/docker/flux/andrea-dog-coach/deploy/current
+    restart: always
+    pull_policy: always
+    volumes:
+      - /opt/docker/flux/andrea-dog-coach/deploy:/opt/docker/flux/andrea-dog-coach/deploy
+    ports:
+      - "8010:9000"
+    networks:
+      - andrea-dog-coach-net
+    depends_on:
+        andrea-dog-coach-mysql:
+            condition: service_healthy
+
+networks:
+  andrea-dog-coach-net:
+    name: andrea-dog-coach-net
+    driver: bridge
