@@ -34,6 +34,7 @@ google_apis_credentials.json
 /.env.local
 /.env.local.php
 /.env.*.local
+/config/reference.php
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /vendor/
@@ -55,3 +56,8 @@ google_apis_credentials.json
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###

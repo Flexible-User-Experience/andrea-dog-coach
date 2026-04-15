@@ -3,11 +3,10 @@
 namespace App\Entity\Traits;
 
 use App\Entity\AbstractBase;
-use DateTimeInterface;
 
 trait BeginDateTrait
 {
-    public function getBeginDate(): ?DateTimeInterface
+    public function getBeginDate(): ?\DateTimeInterface
     {
         return $this->beginDate;
     }
@@ -17,7 +16,7 @@ trait BeginDateTrait
         return AbstractBase::convertDateAsString($this->getBeginDate());
     }
 
-    public function setBeginDate(?DateTimeInterface $beginDate): self
+    public function setBeginDate(?\DateTimeInterface $beginDate): self
     {
         $this->beginDate = $beginDate;
 
