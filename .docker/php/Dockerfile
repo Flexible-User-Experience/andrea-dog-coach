@@ -1,4 +1,4 @@
-FROM php:8.4-fpm-alpine AS base
+FROM php:8.5-fpm-alpine AS base
 
 WORKDIR /var/www/box-idiomes/
 
@@ -45,18 +45,16 @@ RUN docker-php-ext-configure zip                                    && \
     xsl                                                                \
     gd                                                                 ;
 
-RUN pecl install          \
-        apcu-5.1.28    && \
-    pecl clear-cache&&    \
-    docker-php-ext-enable \
-        apcu              \
-        opcache           ;
+RUN pecl install apcu-5.1.28 && \
+    pecl clear-cache         && \
+    docker-php-ext-enable apcu  ;
 
 RUN { \
     EXT_DIR=$(php -r 'echo ini_get("extension_dir");');                                         \
     for ext in apcu bcmath curl xml mbstring zip pdo pdo_sqlite intl gd; do                     \
     test -f "$EXT_DIR/${ext}.so" || { echo "ERROR: ${ext}.so not found in $EXT_DIR"; exit 1; }; \
     done;                                                                                       \
+    php -m | grep -q '^Zend OPcache$' || { echo "ERROR: Zend OPcache not loaded"; exit 1; };    \
 };
 
 COPY --from=composer/composer:2.9-bin /composer /usr/local/bin/composer
@@ -91,7 +89,9 @@ RUN wget https://github.com/overtrue/phplint/releases/download/9.7.1/phplint.pha
     chmod +x phplint.phar                                                         && \
     mv phplint.phar /usr/local/bin/phplint                                           ;
 
-
+##############
+# PROD stage #
+##############
 FROM base AS prod
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
@@ -105,7 +105,7 @@ ENV FPM_PM_MAX_CHILDREN=80 \
     FPM_PM_MAX_REQUESTS=100
 
 RUN rm -r /tmp/pear; \
-     # - Detect Runtime Dependencies of the installed extensions. \
+     # - detect runtime dependencies of the installed extensions. \
      # - src: https://github.com/docker-library/wordpress/blob/master/latest/php8.0/fpm-alpine/Dockerfile \
         out="$(php -r 'exit(0);')"; \
             [ -z "$out" ]; err="$(php -r 'exit(0);' 3>&1 1>&2 2>&3)"; \
@@ -115,9 +115,9 @@ RUN rm -r /tmp/pear; \
                 scanelf --needed --nobanner --format '%n#p' --recursive "$extDir" \
                     | tr ',' '\n' | sort -u | awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
             )"; \
-            # Save Runtime Deps in a virtual deps
+            # save runtime Deps in a virtual deps
             apk add --no-network --virtual .php-extensions-rundeps $runDeps; \
-            # Uninstall Everything we Installed (minus the runtime Deps)
+            # uninstall everything we've installed (minus the runtime Deps)
             apk del --no-network .build-deps; \
             # check for output like "PHP Warning:  PHP Startup: Unable to load dynamic library 'foo' (tried: ...)
             err="$(php --version 3>&1 1>&2 2>&3)"; [ -z "$err" ]
