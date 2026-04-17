@@ -144,10 +144,6 @@ final class ServiceAdmin extends AbstractBaseAdmin
                 CKEditorType::class,
                 [
                     'required' => false,
-                    'quill_extra_options' => [
-                        'height' => '380px',
-                        'theme' => 'snow',
-                    ],
                 ]
             )
             ->end()
