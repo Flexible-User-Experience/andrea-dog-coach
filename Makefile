@@ -125,7 +125,7 @@ doctrine-test/db-recreate: \
 
 # Test
 test/controller: doctrine-test/db-fixtures symfony-test/cache-clear
-	@docker exec $(PHP_CONTAINER_NAME) sh -c "vendor/bin/phpunit -c phpunit.dist.xml --testsuite Controller"
+	@docker exec $(PHP_CONTAINER_NAME) sh -c "vendor/bin/phpunit"
 
 test: test/controller
 
