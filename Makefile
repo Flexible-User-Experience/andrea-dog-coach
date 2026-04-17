@@ -64,7 +64,10 @@ symfony/lint-twig:
 	@docker exec $(PHP_CONTAINER_NAME) sh -c "bin/console lint:twig templates"
 
 symfony/messenger-consume:
-	@docker exec $(PHP_CONTAINER_NAME) sh -c "bin/console messenger:consume async"
+	@docker exec $(PHP_CONTAINER_NAME) sh -c "bin/console messenger:consume async -vv"
+
+symfony/messenger-stop:
+	@docker exec $(PHP_CONTAINER_NAME) sh -c "bin/console messenger:stop-workers"
 
 code-style/fix:
 	@docker exec $(PHP_CONTAINER_NAME) sh -c "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --verbose"
