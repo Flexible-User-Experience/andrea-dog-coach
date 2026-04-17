@@ -9,8 +9,8 @@ services:
       - ./.docker/nginx/server.crt:/etc/nginx/server.crt:cached
       - ./.docker/nginx/server.key:/etc/nginx/server.key:cached
     ports:
-      - "8080:80"
-      - "443:443"
+      - "127.0.0.1:48001:80"
+      - "127.0.0.1:44301:443"
     hostname: 'andrea-dog-coach.test'
     networks:
       - andrea-dog-coach-net
@@ -37,8 +37,8 @@ services:
     image: axllent/mailpit
     container_name: andrea-dog-coach-mailpit
     ports:
-      - "1026:1025"
-      - "8026:8025"
+      - "127.0.0.1:43101:1025"
+      - "127.0.0.1:43201:8025"
     environment:
       MP_SMTP_AUTH_ACCEPT_ANY: 1
       MP_SMTP_AUTH_ALLOW_INSECURE: 1

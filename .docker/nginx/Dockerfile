@@ -1,3 +1,3 @@
-FROM nginx:1.29.5-alpine-perl
+FROM nginx:1.30-alpine-perl
 
 COPY .docker/nginx/nginx-prod.conf /etc/nginx/conf.d/default.conf

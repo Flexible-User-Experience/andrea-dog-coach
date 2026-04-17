@@ -8,14 +8,6 @@ use App\Entity\Translations\ServiceTranslation;
 use App\Enum\RoutesEnum;
 use App\Enum\SortOrderEnum;
 use App\Form\Type\GedmoTranslationsType;
-use Ehyiah\QuillJsBundle\DTO\Fields\BlockField\IndentField;
-use Ehyiah\QuillJsBundle\DTO\Fields\BlockField\ListField;
-use Ehyiah\QuillJsBundle\DTO\Fields\InlineField\BoldField;
-use Ehyiah\QuillJsBundle\DTO\Fields\InlineField\ItalicField;
-use Ehyiah\QuillJsBundle\DTO\Fields\InlineField\LinkField;
-use Ehyiah\QuillJsBundle\DTO\Fields\InlineField\UnderlineField;
-use Ehyiah\QuillJsBundle\DTO\QuillGroup;
-use Ehyiah\QuillJsBundle\Form\QuillType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -149,27 +141,9 @@ final class ServiceAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'description',
-                QuillType::class,
+                CKEditorType::class,
                 [
                     'required' => false,
-                    'quill_extra_options' => [
-                        'height' => '380px',
-                        'theme' => 'snow',
-                    ],
-                    'quill_options' => [
-                        QuillGroup::build(
-                            new BoldField(),
-                            new ItalicField(),
-                            new UnderlineField(),
-                        ),
-                        QuillGroup::build(
-                            new LinkField(),
-                        ),
-                        QuillGroup::build(
-                            new IndentField(),
-                            new ListField(),
-                        ),
-                    ],
                 ]
             )
             ->end()
