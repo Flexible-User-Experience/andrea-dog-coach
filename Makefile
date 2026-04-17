@@ -127,7 +127,8 @@ local-server/hosts-line:
 local-server/login-info:
 	$(info **********************************)
 	$(info Local server is running)
-	$(info URL: https://andrea-dog-coach.test)
+	$(info URL: https://andrea-dog-coach.test:44301)
+	$(info Admin URL: https://andrea-dog-coach.test:44301/admin/login)
 	$(info User: super_admin@email.com)
 	$(info Password: 12345678)
 	$(info **********************************)
