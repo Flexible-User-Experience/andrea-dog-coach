@@ -107,10 +107,10 @@ doctrine/db-recreate: \
 
 # Doctrine test db
 doctrine-test/db-drop:
-	@docker exec $(PHP_CONTAINER_NAME) sh -c "bin/console doctrine:database:drop --force --if-exists --env=test"
+	@docker exec $(PHP_CONTAINER_NAME) sh -c "bin/console doctrine:database:drop --force --env=test"
 
 doctrine-test/db-create:
-	@docker exec $(PHP_CONTAINER_NAME) sh -c "bin/console doctrine:database:create --if-not-exists --env=test"
+	@docker exec $(PHP_CONTAINER_NAME) sh -c "bin/console doctrine:database:create --env=test"
 
 doctrine-test/db-create-schema:
 	@docker exec $(PHP_CONTAINER_NAME) sh -c "bin/console doctrine:schema:create --quiet --env=test"
