@@ -18,6 +18,9 @@ php/lint:
 composer/install:
 	@docker exec $(PHP_CONTAINER_NAME) sh -c "composer install"
 
+composer/update:
+	@docker exec $(PHP_CONTAINER_NAME) sh -c "composer update"
+
 composer/execute-autoscripts:
 	@docker exec $(PHP_CONTAINER_NAME) sh -c "composer run-script auto-scripts"
 
