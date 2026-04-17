@@ -168,7 +168,7 @@ start startd stop destroy:
 
 rebuild:
 	make destroy
-	COMPOSE_BAKE=true docker compose --pull --force-rm --no-cache
+	COMPOSE_BAKE=true docker compose build --pull --force-rm --no-cache
 	make startd
 
 restart: stop start
