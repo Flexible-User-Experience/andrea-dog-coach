@@ -76,6 +76,9 @@ code-style/fix-file:
 	@docker exec $(PHP_CONTAINER_NAME) sh -c "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --verbose"
 
 # Doctrine
+doctrine/migration-status:
+	@docker exec $(PHP_CONTAINER_NAME) sh -c "bin/console doctrine:migrations:status"
+
 doctrine/migration-generate:
 	@docker exec $(PHP_CONTAINER_NAME) sh -c "bin/console doctrine:migrations:diff"
 
