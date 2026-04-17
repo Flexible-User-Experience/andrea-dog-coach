@@ -1,4 +1,4 @@
-FROM php:8.4.20-fpm-alpine3.23 AS base
+FROM php:8.4-fpm-alpine AS base
 
 WORKDIR /var/www/box-idiomes/
 
