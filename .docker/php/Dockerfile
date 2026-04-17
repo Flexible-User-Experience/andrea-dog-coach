@@ -1,6 +1,6 @@
 FROM php:8.5-fpm-alpine AS base
 
-WORKDIR /var/www/box-idiomes/
+WORKDIR /var/www/andrea-dog-coach/
 
 ENV FPM_PM_MAX_CHILDREN="10" \
     PHP_OPCACHE_VALIDATE_TIMESTAMPS="1" \
@@ -70,11 +70,10 @@ RUN pecl install pcov-1.0.12 && \
 RUN pecl install xdebug-3.5.0 && \
     docker-php-ext-enable xdebug ;
 
-RUN mkdir -p /var/www/box-idiomes/var/cache /var/www/box-idiomes/var/log
+RUN mkdir -p /var/www/andrea-dog-coach/var/cache /var/www/andrea-dog-coach/var/log
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 COPY .docker/php/php.ini-development "$PHP_INI_DIR/conf.d/90-custom.ini"
-COPY .docker/php/opcache.ini "$PHP_INI_DIR/conf.d/docker-php-ext-opcache.ini"
 COPY .docker/php/xdebug-disabled.ini "$PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini"
 
 RUN wget https://github.com/maglnet/ComposerRequireChecker/releases/download/4.19.0/composer-require-checker.phar && \
@@ -104,30 +103,29 @@ ENV FPM_PM_MAX_CHILDREN=80 \
     FPM_PM_MAX_SPARE_SERVERS=60 \
     FPM_PM_MAX_REQUESTS=100
 
-RUN rm -r /tmp/pear; \
-     # - detect runtime dependencies of the installed extensions. \
-     # - src: https://github.com/docker-library/wordpress/blob/master/latest/php8.0/fpm-alpine/Dockerfile \
-        out="$(php -r 'exit(0);')"; \
-            [ -z "$out" ]; err="$(php -r 'exit(0);' 3>&1 1>&2 2>&3)"; \
-            [ -z "$err" ]; extDir="$(php -r 'echo ini_get("extension_dir");')"; \
-            [ -d "$extDir" ]; \
-            runDeps="$( \
-                scanelf --needed --nobanner --format '%n#p' --recursive "$extDir" \
-                    | tr ',' '\n' | sort -u | awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
-            )"; \
-            # save runtime Deps in a virtual deps
-            apk add --no-network --virtual .php-extensions-rundeps $runDeps; \
-            # uninstall everything we've installed (minus the runtime Deps)
-            apk del --no-network .build-deps; \
-            # check for output like "PHP Warning:  PHP Startup: Unable to load dynamic library 'foo' (tried: ...)
-            err="$(php --version 3>&1 1>&2 2>&3)"; [ -z "$err" ]
+# https://github.com/docker-library/wordpress/blob/master/latest/php8.0/fpm-alpine/Dockerfile
+RUN rm -r /tmp/pear;                                                                                            \
+    # - detect runtime dependencies of the installed extensions.                                                \
+    out="$(php -r 'exit(0);')";                                                                                 \
+    [ -z "$out" ]; err="$(php -r 'exit(0);' 3>&1 1>&2 2>&3)";                                                   \
+    [ -z "$err" ]; extDir="$(php -r 'echo ini_get("extension_dir");')";                                         \
+    [ -d "$extDir" ];                                                                                           \
+    runDeps="$(                                                                                                 \
+        scanelf --needed --nobanner --format '%n#p' --recursive "$extDir"                                       \
+        | tr ',' '\n' | sort -u | awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
+    )";                                                                                                         \
+    # save runtime Deps in a virtual deps                                                                       \
+    apk add --no-network --virtual .php-extensions-rundeps $runDeps;                                            \
+    # uninstall everything we've installed (minus the runtime Deps)                                             \
+    apk del --no-network .build-deps;                                                                           \
+    # check for output like "PHP Warning:  PHP Startup: Unable to load dynamic library 'foo' (tried: ...)       \
+    err="$(php --version 3>&1 1>&2 2>&3)"; [ -z "$err" ]
 
 RUN apk update && apk add --no-cache --virtual .build-deps supervisor
 
 # PHP config
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY --chown=www-data:www-data --link .docker/php/php.ini-production "$PHP_INI_DIR/conf.d/90-custom.ini"
-COPY --chown=www-data:www-data --link .docker/php/opcache.ini "$PHP_INI_DIR/conf.d/docker-php-ext-opcache.ini"
 
 # PHP-FPM config
 RUN rm /usr/local/etc/php-fpm.d/*
