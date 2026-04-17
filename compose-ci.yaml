@@ -1,0 +1,55 @@
+services:
+  andrea-dog-coach-nginx:
+    image: nginx:1.29.3
+    container_name: andrea-dog-coach-nginx
+    working_dir: /var/www/andrea-dog-coach
+    volumes:
+      - ./:/var/www/andrea-dog-coach:cached
+      - ./.docker/nginx/nginx-dev.conf:/etc/nginx/conf.d/default.conf
+      - ./.docker/nginx/server.crt:/etc/nginx/server.crt:cached
+      - ./.docker/nginx/server.key:/etc/nginx/server.key:cached
+    ports:
+      - "8080:80"
+      - "443:443"
+    hostname: 'andrea-dog-coach.test'
+    networks:
+      - andrea-dog-coach-net
+    depends_on:
+      - andrea-dog-coach-php
+
+  andrea-dog-coach-php:
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+      target: development
+    container_name: andrea-dog-coach-php
+    working_dir: /var/www/andrea-dog-coach
+    volumes:
+      - ./:/var/www/andrea-dog-coach:cached
+      - ./.docker/php/php.ini-development:/usr/local/etc/php/conf.d/custom.ini:cached
+    environment:
+      XDEBUG_SESSION: PHPSTORM
+      PHP_IDE_CONFIG: serverName=docker-localhost
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - andrea-dog-coach-net
+
+  andrea-dog-coach-mailpit:
+    image: axllent/mailpit
+    container_name: andrea-dog-coach-mailpit
+    ports:
+      - "1026:1025"
+      - "8026:8025"
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+    depends_on:
+      - andrea-dog-coach-php
+    networks:
+      - andrea-dog-coach-net
+
+networks:
+  andrea-dog-coach-net:
+    name: andrea-dog-coach-net
+    driver: bridge
