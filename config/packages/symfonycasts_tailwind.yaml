@@ -1,2 +1,3 @@
 symfonycasts_tailwind:
-    binary_version: 'v4.1.17'
+    binary_version: 'v4.2.2'
+    binary_platform: 'auto'
