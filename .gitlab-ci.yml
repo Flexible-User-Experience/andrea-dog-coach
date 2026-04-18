@@ -52,7 +52,7 @@ deploy:
         - chmod 400 "$SSH_PRIVATE_KEY"
         - ssh-add "$SSH_PRIVATE_KEY"
     script:
-        - dep deploy -v
+        - dep deploy -vvv
 
 deploy_rollback:
     stage: deploy_rollback
@@ -104,16 +104,27 @@ deploy_infra:
         - apk add --update curl
         - echo "APP_ENV=prod" > .env.local
         - echo "APP_SECRET_PROD=$APP_SECRET_PROD" >> .env.local
-        - echo "BOSS_DNI_PROD=$BOSS_DNI_PROD" >> .env.local
+        - echo "GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID_PROD" >> .env.local
+        - echo "PROJECT_URL_BASE=$PROJECT_URL_BASE_PROD" >> .env.local
+        - echo "CUSTOMER_NAME=$CUSTOMER_NAME_PROD" >> .env.local
+        - echo "CUSTOMER_ADDRESS=$CUSTOMER_ADDRESS_PROD" >> .env.local
+        - echo "CUSTOMER_CITY=$CUSTOMER_CITY_PROD" >> .env.local
+        - echo "CUSTOMER_ZIP=$CUSTOMER_ZIP_PROD" >> .env.local
+        - echo "CUSTOMER_PROVINCE=$CUSTOMER_PROVINCE_PROD" >> .env.local
+        - echo "CUSTOMER_TIN=$CUSTOMER_TIN_PROD" >> .env.local
+        - echo "CUSTOMER_MOBILE_PHONE=$CUSTOMER_MOBILE_PHONE_PROD" >> .env.local
+        - echo "CUSTOMER_DELIVERY_ADDRESS=$CUSTOMER_DELIVERY_ADDRESS_PROD" >> .env.local
+        - echo "CUSTOMER_URL=$CUSTOMER_URL_PROD" >> .env.local
+        - echo "FACEBOOK_URL=$FACEBOOK_URL_PROD" >> .env.local
+        - echo "INSTAGRAM_URL=$INSTAGRAM_URL_PROD" >> .env.local
+        - echo "YOUTUBE_URL=$YOUTUBE_URL_PROD" >> .env.local
+        - echo "DEVELOPER_NAME=$DEVELOPER_NAME_PROD" >> .env.local
+        - echo "DEVELOPER_URL=$DEVELOPER_URL_PROD" >> .env.local
+        - echo "MAILER_DSN=$MAILER_DSN_PROD" >> .env.local
+        - echo "GOOGLE_RECAPTCHA_SITE_KEY=$GOOGLE_RECAPTCHA_SITE_KEY_PROD" >> .env.local
+        - echo "GOOGLE_RECAPTCHA_SECRET=$GOOGLE_RECAPTCHA_SECRET_PROD" >> .env.local
         - echo "EWZ_RECAPTCHA_SECRET_PROD=$EWZ_RECAPTCHA_SECRET_PROD" >> .env.local
         - echo "EWZ_RECAPTCHA_SITE_KEY_PROD=$EWZ_RECAPTCHA_SITE_KEY_PROD" >> .env.local
-        - echo "FACEBOOK_API_SECRET_PROD=$FACEBOOK_API_SECRET_PROD" >> .env.local
-        - echo "GOOGLE_CALENDAR_API_KEY_PROD=$GOOGLE_CALENDAR_API_KEY_PROD" >> .env.local
-        - echo "IBAN_BUSINESS_PROD=$IBAN_BUSINESS_PROD" >> .env.local
-        - echo "MAILCHIMP_API_KEY_PROD=$MAILCHIMP_API_KEY_PROD" >> .env.local
-        - echo "MAILER_PASSWORD_PROD=$MAILER_PASSWORD_PROD" >> .env.local
-        - echo "MAILING_MAILER_PASSWORD_PROD=$MAILING_MAILER_PASSWORD_PROD" >> .env.local
-        - echo "MYSQL_PASSWORD_PROD=$MYSQL_PASSWORD_PROD" >> .env.local
         - cp dockerignore-prod .dockerignore
     script:
         - docker pull $CI_REGISTRY_IMAGE_PHP:latest || true
