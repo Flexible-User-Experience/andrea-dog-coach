@@ -18,6 +18,7 @@ RUN apk update                               && \
 RUN apk add --no-cache --virtual .build-deps    \
     $PHPIZE_DEPS                                \
     bash                                        \
+    git                                         \
     tzdata                                      \
     icu-dev                                     \
     curl-dev                                    \
