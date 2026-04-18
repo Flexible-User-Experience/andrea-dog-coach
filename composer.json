@@ -123,7 +123,6 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.91",
         "phpunit/phpunit": "^12.5",
-        "roave/security-advisories": "dev-latest",
         "symfony/browser-kit": "7.4.*",
         "symfony/css-selector": "7.4.*",
         "symfony/debug-bundle": "7.4.*",
