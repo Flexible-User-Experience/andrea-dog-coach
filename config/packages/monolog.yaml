@@ -9,13 +9,13 @@ monolog:
             level: 'debug'
             type: 'rotating_file'
             path: '%kernel.logs_dir%/%kernel.environment%_mail.log'
-            channels: 'mail'
+            channels: [ 'mail' ]
         queue:
             max_files: 30
             level: 'debug'
             type: 'rotating_file'
             path: '%kernel.logs_dir%/%kernel.environment%_queue.log'
-            channels: 'queue'
+            channels: [ 'queue' ]
 
 when@dev:
     monolog:
@@ -61,7 +61,7 @@ when@prod:
             nested:
                 path: '%kernel.logs_dir%/%kernel.environment%.log'
                 type: 'rotating_file'
-                level: 'debug'
+                level: 'info'
                 max_files: 15
                 channels: [ '!deprecation' ]
             console:
