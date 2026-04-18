@@ -27,7 +27,7 @@ test:
         - docker exec andrea-dog-coach-php sh -c "composer install"
         - docker exec andrea-dog-coach-php sh -c "composer run-script auto-scripts"
         - docker exec andrea-dog-coach-php sh -c "composer validate --strict"
-        - docker exec andrea-dog-coach-php sh -c "composer-require-checker --ignore-parse-errors"
+        - docker exec andrea-dog-coach-php sh -c "composer-require-checker --ignore-parse-errors --quiet"
         - docker exec andrea-dog-coach-php sh -c "phplint --configuration=.phplint.yml"
         - docker exec andrea-dog-coach-php sh -c "bin/console lint:container"
         - docker exec andrea-dog-coach-php sh -c "bin/console lint:yaml config src"
