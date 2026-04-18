@@ -1,6 +1,6 @@
 services:
   andrea-dog-coach-nginx:
-    image: nginx:1.29.3
+    image: nginx:1.30-alpine-slim
     container_name: andrea-dog-coach-nginx
     working_dir: /var/www/andrea-dog-coach
     volumes:
@@ -11,7 +11,7 @@ services:
     ports:
       - "127.0.0.1:48001:80"
       - "127.0.0.1:44301:443"
-    hostname: 'andrea-dog-coach.test'
+    hostname: "andrea-dog-coach.test"
     networks:
       - andrea-dog-coach-net
 
@@ -22,6 +22,7 @@ services:
       target: development
     container_name: andrea-dog-coach-php
     working_dir: /var/www/andrea-dog-coach
+    user: "1000:1000"
     volumes:
       - ./:/var/www/andrea-dog-coach:cached
       - ./.docker/php/php.ini-development:/usr/local/etc/php/conf.d/custom.ini:cached
