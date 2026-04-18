@@ -9,8 +9,8 @@ require 'recipe/symfony.php';
 
 // Config
 
-set('application', 'flux/andrea-dog-coach-4');
-set('repository', 'ssh://git@gitlab.espaikowo.cat:2222/flux/andrea-dog-coach-4.git');
+set('application', 'flux/andrea-dog-coach');
+set('repository', 'ssh://git@gitlab.espaikowo.cat:2222/flux/andrea-dog-coach.git');
 set('branch', 'main');
 set('keep_releases', 3);
 
@@ -66,23 +66,35 @@ task('deploy:env:secrets', static function () use ($dumpSymfonyEnvVar): void {
     run('echo "APP_ENV=prod" > {{release_path}}/.env.local');
     $dumpSymfonyEnvVar('APP_SECRET_PROD');
     $dumpSymfonyEnvVar('BOSS_DNI_PROD');
+    $dumpSymfonyEnvVar('GOOGLE_ANALYTICS_ID_PROD');
+    $dumpSymfonyEnvVar('PROJECT_URL_BASE_PROD');
+    $dumpSymfonyEnvVar('CUSTOMER_NAME_PROD');
+    $dumpSymfonyEnvVar('CUSTOMER_ADDRESS_PROD');
+    $dumpSymfonyEnvVar('CUSTOMER_CITY_PROD');
+    $dumpSymfonyEnvVar('CUSTOMER_ZIP_PROD');
+    $dumpSymfonyEnvVar('CUSTOMER_PROVINCE_PROD');
+    $dumpSymfonyEnvVar('CUSTOMER_TIN_PROD');
+    $dumpSymfonyEnvVar('CUSTOMER_MOBILE_PHONE_PROD');
+    $dumpSymfonyEnvVar('CUSTOMER_DELIVERY_ADDRESS_PROD');
+    $dumpSymfonyEnvVar('CUSTOMER_URL_PROD');
+    $dumpSymfonyEnvVar('FACEBOOK_URL_PROD');
+    $dumpSymfonyEnvVar('INSTAGRAM_URL_PROD');
+    $dumpSymfonyEnvVar('YOUTUBE_URL_PROD');
+    $dumpSymfonyEnvVar('DEVELOPER_NAME_PROD');
+    $dumpSymfonyEnvVar('DEVELOPER_URL_PROD');
+    $dumpSymfonyEnvVar('MAILER_DSN_PROD');
+    $dumpSymfonyEnvVar('GOOGLE_RECAPTCHA_SITE_KEY_PROD');
+    $dumpSymfonyEnvVar('GOOGLE_RECAPTCHA_SECRET_PROD');
     $dumpSymfonyEnvVar('EWZ_RECAPTCHA_SECRET_PROD');
     $dumpSymfonyEnvVar('EWZ_RECAPTCHA_SITE_KEY_PROD');
-    $dumpSymfonyEnvVar('FACEBOOK_API_SECRET_PROD');
-    $dumpSymfonyEnvVar('GOOGLE_CALENDAR_API_KEY_PROD');
-    $dumpSymfonyEnvVar('IBAN_BUSINESS_PROD');
-    $dumpSymfonyEnvVar('MAILCHIMP_API_KEY_PROD');
-    $dumpSymfonyEnvVar('MAILER_PASSWORD_PROD');
-    $dumpSymfonyEnvVar('MAILING_MAILER_PASSWORD_PROD');
 });
 
 desc('Compile assets');
 task('deploy:assets:compile', function () {
     run('{{bin/console}} ckeditor:install --tag=4.22.1');
     run('{{bin/console}} assets:install');
-    run('{{bin/console}} fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json');
     run('{{bin/console}} importmap:install');
-    run('{{bin/console}} sass:build');
+    run('{{bin/console}} tailwind:build');
     run('{{bin/console}} asset-map:compile');
 });
 
