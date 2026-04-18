@@ -11,7 +11,7 @@ services:
     ports:
       - "8080:80"
       - "443:443"
-    hostname: 'andrea-dog-coach.test'
+    hostname: "andrea-dog-coach.test"
     networks:
       - andrea-dog-coach-net
     depends_on:
@@ -24,6 +24,7 @@ services:
       target: development
     container_name: andrea-dog-coach-php
     working_dir: /var/www/andrea-dog-coach
+    user: "1000:1000"
     volumes:
       - ./:/var/www/andrea-dog-coach:cached
       - ./.docker/php/php.ini-development:/usr/local/etc/php/conf.d/custom.ini:cached
