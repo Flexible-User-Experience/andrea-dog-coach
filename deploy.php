@@ -16,8 +16,6 @@ set('keep_releases', 3);
 
 set('composer_options', '--no-scripts --no-dev --prefer-dist --no-progress --no-interaction --optimize-autoloader');
 
-set('supervisor_config_path', '/etc/supervisor/conf.d');
-
 add('shared_dirs', [
     'public/media/',
     'public/uploads/',
@@ -48,7 +46,6 @@ host('s7.flux.cat')
     ->set('bin/php', 'docker exec -w /opt/docker/flux/andrea-dog-coach/deploy/release andrea-dog-coach-php php')
     ->set('bin/composer', 'docker exec -w /opt/docker/flux/andrea-dog-coach/deploy/release andrea-dog-coach-php composer')
     ->set('bin/console', 'docker exec -w /opt/docker/flux/andrea-dog-coach/deploy/release andrea-dog-coach-php /opt/docker/flux/andrea-dog-coach/deploy/release/bin/console')
-    ->set('bin/supervisorctl', 'docker exec andrea-dog-coach-php supervisorctl')
 ;
 
 $dumpSymfonyEnvVar = static function (string $name) {
@@ -108,26 +105,12 @@ task('deploy:cache:warmup', static function (): void {
     run('{{bin/console}} cache:warmup --env=prod');
 });
 
-desc('Stop supervisor');
-task('deploy:supervisor:stop', static function (): void {
-    run('{{ bin/supervisorctl }} stop all || exit 0');
-});
-
-desc('');
-task('deploy:supervisor:reload', static function (): void {
-    run('docker exec andrea-dog-coach-php rm -rf {{ supervisor_config_path }}');
-    run('docker exec andrea-dog-coach-php ln -sf /opt/docker/flux/andrea-dog-coach/deploy/current/scripts/supervisor/ {{ supervisor_config_path }}');
-    run('{{ bin/supervisorctl }} reread && {{ bin/supervisorctl }} update && {{ bin/supervisorctl }} start all');
-});
-
 after('deploy:failed', 'deploy:unlock');
-after('deploy:failed', 'deploy:supervisor:reload');
 
 task('deploy', [
     'deploy:info',
     'deploy:setup',
     'deploy:lock',
-    'deploy:supervisor:stop',
     'deploy:release',
     'deploy:update_code',
     'deploy:shared',
@@ -139,7 +122,6 @@ task('deploy', [
     'deploy:dump-env',
     'database:migrate',
     'deploy:symlink',
-    'deploy:supervisor:reload',
     'deploy:cleanup',
     'deploy:unlock',
     'deploy:success',
