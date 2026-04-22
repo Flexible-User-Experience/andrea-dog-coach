@@ -122,8 +122,6 @@ RUN rm -r /tmp/pear;                                                            
     # check for output like "PHP Warning:  PHP Startup: Unable to load dynamic library 'foo' (tried: ...)       \
     err="$(php --version 3>&1 1>&2 2>&3)"; [ -z "$err" ]
 
-RUN apk update && apk add --no-cache --virtual .build-deps
-
 # PHP config
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY --chown=www-data:www-data --link .docker/php/php.ini-production "$PHP_INI_DIR/conf.d/90-custom.ini"
