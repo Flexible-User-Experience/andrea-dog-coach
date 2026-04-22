@@ -139,5 +139,3 @@ RUN chmod +x /usr/local/bin/php-fpm-healthcheck
 HEALTHCHECK CMD ["php-fpm-healthcheck"]
 
 USER www-data
-
-ENTRYPOINT []
