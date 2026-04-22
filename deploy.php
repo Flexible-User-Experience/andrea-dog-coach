@@ -51,7 +51,7 @@ host('s7.flux.cat')
 $dumpSymfonyEnvVar = static function (string $name) {
     run(
         sprintf(
-            'echo "%s=%s" >> {{release_path}}/.env.local',
+            'echo "%s=\"%s\"" >> {{release_path}}/.env.local',
             $name,
             getenv($name),
         ),
