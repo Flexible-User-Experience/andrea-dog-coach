@@ -135,3 +135,5 @@ COPY --chown=www-data:www-data --link .docker/php/php-fpm-healthcheck /usr/local
 RUN chmod +x /usr/local/bin/php-fpm-healthcheck
 
 HEALTHCHECK CMD ["php-fpm-healthcheck"]
+
+CMD ["php-fpm", "-F"]
