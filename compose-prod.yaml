@@ -8,7 +8,7 @@ services:
     volumes:
       - /opt/docker/flux/andrea-dog-coach/deploy:/opt/docker/flux/andrea-dog-coach/deploy
     ports:
-      - "8010:9000"
+      - "8015:9000"
     networks:
       - andrea-dog-coach-net
 
