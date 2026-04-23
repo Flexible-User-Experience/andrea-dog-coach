@@ -9,7 +9,7 @@ services:
     volumes:
       - /opt/docker/flux/andrea-dog-coach/deploy:/opt/docker/flux/andrea-dog-coach/deploy
     ports:
-      - "8015:9000"
+      - "127.0.0.1:8015:9000"
     networks:
       - andrea-dog-coach-net
 
@@ -17,3 +17,4 @@ networks:
   andrea-dog-coach-net:
     name: andrea-dog-coach-net
     driver: bridge
+    enable_ipv6: false
