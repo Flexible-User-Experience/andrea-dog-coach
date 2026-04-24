@@ -38,12 +38,12 @@ composer/unused:
 
 # Xdebug
 xdebug/enable:
-	@docker exec $(PHP_CONTAINER_NAME) sh -c "cp .docker/php/xdebug-enabled.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"
+	@docker exec --user root $(PHP_CONTAINER_NAME) sh -c "cp .docker/php/xdebug-enabled.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"
 	@docker restart $(PHP_CONTAINER_NAME)
 	@docker restart $(NGINX_CONTAINER_NAME)
 
 xdebug/disable:
-	@docker exec $(PHP_CONTAINER_NAME) sh -c "cp .docker/php/xdebug-disabled.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"
+	@docker exec --user root $(PHP_CONTAINER_NAME) sh -c "cp .docker/php/xdebug-disabled.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"
 	@docker restart $(PHP_CONTAINER_NAME)
 	@docker restart $(NGINX_CONTAINER_NAME)
 
