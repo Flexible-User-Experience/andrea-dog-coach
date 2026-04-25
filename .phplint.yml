@@ -1,12 +1,12 @@
 path:
-    - src
-    - tests
+  - src
+  - tests
 jobs: 10
 extensions:
-    - php
+  - php
 exclude:
-    - var
-    - vendor
+  - var
+  - vendor
 warning: true
 memory-limit: -1
 no-cache: true
